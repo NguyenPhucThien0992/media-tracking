@@ -1,0 +1,84 @@
+.table-checker {
+  margin-top: 30px;
+}
+.table-wrapper {
+  overflow-x: scroll;
+  overflow-y: visible;
+  width: 100%;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+td,
+th {
+  padding: 5px 20px;
+  width: 100px;
+}
+/* 
+th:first-child {
+  position: fixed;
+  left: 5px;
+} */
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+#customers td,
+#customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#customers tr:hover {
+  background-color: #ddd;
+}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4caf50;
+  color: white;
+}
+.worked-status,
+#customers td span.worked-status i {
+  font-size: 30px;
+  color: green;
+}
+.late-status,
+#customers td span.late-status i {
+  font-size: 30px;
+  color: blue;
+}
+.off-status,
+#customers td span.off-status i {
+  font-size: 30px;
+  color: red;
+}
+#customers td span.no-shift {
+  font-size: 15px;
+  color: purple;
+  font-weight: bold;
+}
+.forgot-status,
+#customers td span.forgot-status {
+  font-size: 22px;
+  color: orange;
+  font-weight: bold;
+}
+#customers td span.not-start {
+  font-size: 15px;
+  color: maroon;
+  font-weight: bold;
+}
+#customers td {
+  text-align: center;
+}
+.noted {
+  font-size: 15px;
+  margin-left: 10px;
+  text-align: center;
+}
+.sumary {
+  margin-top: 30px;
+}
