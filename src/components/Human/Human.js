@@ -13,14 +13,43 @@ class Human extends Component {
             <div className="row bg-white has-shadow">
               <div className="col-xl-6 col-sm-6">
                 <div className="item d-flex align-items-center">
-                  <NavLink
+                  {/* <NavLink
                     to="/human/details"
                     className="btn btn-success"
                     data-toggle="modal"
                     data-target="#addEmployee"
                   >
                     Tạo mới
-                  </NavLink>
+                  </NavLink> */}
+                  <div className="card">
+                    <div className="card-header d-flex align-items-center">
+                      <h3 className="h4">Tìm kiếm nhân sự mới</h3>
+                    </div>
+                    <div className="card-body">
+                      <form className="form-inline">
+                        <div className="form-group">
+                          <label for="inlineFormInput" className="sr-only">
+                            Số điện thoại
+                          </label>
+                          <input
+                            id="inlineFormInput"
+                            type="text"
+                            placeholder="Số điện thoại"
+                            className="mr-3 form-control"
+                          />
+                        </div>
+
+                        <div className="form-group">
+                          <NavLink
+                            to="/human/search/details"
+                            className="btn btn-success"
+                          >
+                            Tìm kiếm
+                          </NavLink>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
                   <div
                     id="addEmployee"
                     tabIndex="-1"

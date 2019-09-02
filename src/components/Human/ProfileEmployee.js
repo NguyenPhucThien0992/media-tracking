@@ -46,9 +46,67 @@ class ProfileEmployee extends Component {
                     </div>
                   </div>
                   <div class="col-md-2">
-                    <NavLink to="/human/details" class="btn btn-primary">
-                      Sửa thông tin
-                    </NavLink>
+                    {/* <NavLink to="/human/details" class="btn btn-primary">
+                      Sửa chức vụ
+                    </NavLink> */}
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-toggle="modal"
+                      data-target="#addNewEmployee"
+                    >
+                      Sửa chức vụ
+                    </button>
+                    <div
+                      className="modal fade"
+                      id="addNewEmployee"
+                      tabIndex="-1"
+                      role="dialog"
+                      aria-labelledby="addNewEmployee"
+                      aria-hidden="true"
+                    >
+                      <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                          <div className="modal-header">
+                            <h5 className="modal-title" id="addNewEmployee">
+                              Sửa chức vụ
+                            </h5>
+
+                            <button
+                              type="button"
+                              className="close"
+                              data-dismiss="modal"
+                              aria-label="Close"
+                            >
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div className="modal-body">
+                            Vui lòng chọn chức vụ cho nhân viên
+                          </div>
+                          <div className="col-sm-8 offset-2 dropdown-area">
+                            <select name="account" class="form-control mb-3">
+                              <option>Director</option>
+                              <option>Manager</option>
+                              <option> Teamleader</option>
+                              <option>Field Operator</option>
+                            </select>
+                          </div>
+                          <div className="modal-footer">
+                            <button
+                              type="button"
+                              className="btn btn-secondary"
+                              data-dismiss="modal"
+                            >
+                              Hủy
+                            </button>
+                            <button type="button" className="btn btn-primary">
+                              Sửa
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="row">

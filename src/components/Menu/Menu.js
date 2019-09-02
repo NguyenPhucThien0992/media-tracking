@@ -52,9 +52,9 @@ class Menu extends Component {
               Dự án
             </a>
             <ul id="Project" className="collapse list-unstyled ">
-              <li>
+              {/* <li>
                 <NavLink to="/create-project">Tạo dự án</NavLink>
-              </li>
+              </li> */}
               <li>
                 <NavLink to="/all-project">Tổng dự án</NavLink>
               </li>

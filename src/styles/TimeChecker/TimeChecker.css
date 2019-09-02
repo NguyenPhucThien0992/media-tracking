@@ -1,6 +1,7 @@
 .table-checker {
   margin-top: 30px;
 }
+
 .table-wrapper {
   overflow-x: scroll;
   overflow-y: visible;
@@ -14,21 +15,24 @@ th {
   padding: 5px 20px;
   width: 100px;
 }
+
 /* 
 th:first-child {
   position: fixed;
   left: 5px;
 } */
-#customers {
+/* #customers {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
+
 #customers td,
 #customers th {
   border: 1px solid #ddd;
   padding: 8px;
 }
+
 #customers tr:hover {
   background-color: #ddd;
 }
@@ -40,45 +44,161 @@ th:first-child {
   background-color: #4caf50;
   color: white;
 }
+
 .worked-status,
 #customers td span.worked-status i {
   font-size: 30px;
   color: green;
 }
+
 .late-status,
 #customers td span.late-status i {
   font-size: 30px;
   color: blue;
 }
+
 .off-status,
 #customers td span.off-status i {
   font-size: 30px;
   color: red;
 }
+
 #customers td span.no-shift {
   font-size: 15px;
   color: purple;
   font-weight: bold;
 }
+
 .forgot-status,
 #customers td span.forgot-status {
   font-size: 22px;
   color: orange;
   font-weight: bold;
 }
+
 #customers td span.not-start {
   font-size: 15px;
   color: maroon;
   font-weight: bold;
 }
+
 #customers td {
   text-align: center;
 }
+
 .noted {
   font-size: 15px;
   margin-left: 10px;
   text-align: center;
 }
+
 .sumary {
   margin-top: 30px;
+} */
+
+/* table css */
+tbody tr td.header-in {
+  color: green;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+tbody tr td.header-out {
+  color: orange;
+  font-weight: bold;
+  font-size: 16px
+}
+
+tbody tr td.header-out {
+  color: orange;
+  font-weight: bold;
+  font-size: 16px
+}
+
+tbody tr td.header-result {
+  color: blue;
+  font-weight: bold;
+  font-size: 16px
+}
+
+tbody tr td.header-name {
+  color: black;
+  font-weight: bold;
+  font-size: 16px
+}
+
+tbody tr td.result-in {
+  color: black;
+  font-size: 16px;
+}
+
+tbody tr td.result-out {
+  color: black;
+  font-size: 16px;
+}
+
+tbody tr td.result-ok {
+  color: green;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+tbody tr td.result-forgot-in {
+  color: orange;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+tbody tr td.result-forgot-out {
+  color: yellow;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+tbody tr td.result-forgot-off {
+  color: red;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+tbody tr td.result-late-in {
+  color: purple;
+  font-size: 16px;
+  font-weight: bold
+}
+
+tbody tr td.result-free {
+  background-color: grey;
+  cursor: none;
+  opacity: 0.5;
+}
+
+.done-status {
+  margin-right: 10px;
+  font-weight: 800;
+  color: green
+}
+
+.forgot-in-status {
+  margin-right: 10px;
+  font-weight: 800;
+  color: orange
+}
+
+.forgot-out-status {
+  margin-right: 10px;
+  font-weight: 800;
+  color: red;
+}
+
+.late-in-status {
+  margin-right: 10px;
+  font-weight: 800;
+  color: purple
+}
+
+.off-status {
+  margin-right: 10px;
+  font-weight: 800;
+  color: red
 }

@@ -61,219 +61,215 @@ class CheckerTable extends Component {
                   <table id="customers" className="data">
                     <thead>
                       <tr>
-                        <th>Nhân viên</th>
-                        <th>Thứ hai 05/09</th>
-                        <th>Thứ ba 06/09</th>
-                        <th>Thứ tư 07/09</th>
-                        <th>Thứ năm 08/09</th>
-                        <th>Thứ thứ 09/09</th>
-                        <th>Thứ bảy 10/09</th>
-                        <th>Chủ nhật 11/09</th>
-                        <th>Thứ hai 12/09</th>
-                        <th>Thứ ba 13/09</th>
-                        <th>Thứ tư 14/09</th>
-                        <th>Thứ năm 15/09</th>
-                        <th>Thứ sáu 16/09</th>
-                        <th>Thứ bảy 17/09</th>
-                        <th>Chủ nhật 18/09</th>
-                        <th>Thứ hai 19/09</th>
-                        <th>Thứ ba 20/09</th>
-                        <th>Thứ tư 21/09</th>
-                        <th>Thứ năm 22/09</th>
-                        <th>Thứ sáu 23/09</th>
-                        <th>Thứ bảy 24/09</th>
+                        <th rowspan="2">Nhân viên</th>
+                        <th colspan="3">Thứ hai 05/09</th>
+                        <th colspan="3">Thứ ba 06/09</th>
+                        <th colspan="3">Thứ tư 07/09</th>
+                        <th colspan="3">Thứ năm 08/09</th>
+                        <th colspan="3">Thứ thứ 09/09</th>
+                        <th colspan="3">Thứ bảy 10/09</th>
+                        <th colspan="3">Chủ nhật 11/09</th>
+                        <th colspan="3">Thứ hai 12/09</th>
+                        <th colspan="3">Thứ ba 13/09</th>
+                        <th colspan="3">Thứ tư 14/09</th>
+                        <th colspan="3">Thứ năm 15/09</th>
+                        <th colspan="3">Thứ sáu 16/09</th>
+                        <th colspan="3">Thứ bảy 17/09</th>
+                        <th colspan="3">Chủ nhật 18/09</th>
+                        <th colspan="3">Thứ hai 19/09</th>
+                        <th colspan="3">Thứ ba 20/09</th>
+                        <th colspan="3">Thứ tư 21/09</th>
+                        <th colspan="3">Thứ năm 22/09</th>
+                        <th colspan="3">Thứ sáu 23/09</th>
+                        <th colspan="3">Thứ bảy 24/09</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>Nguyễn Văn A</td>
-                        <td>
-                          <span className="worked-status">
-                            <i
-                              class="fa fa-check-circle-o"
-                              aria-hidden="true"
-                            />
-                          </span>
+                        <td rowspan="2" className="header-name">
+                          Nguyễn Văn A
                         </td>
-                        <td>
-                          <span className="off-status">
-                            <i class="fa fa-times-circle" aria-hidden="true" />
-                          </span>
-                        </td>
-                        <td>
-                          <span className="forgot-status">
-                            <i
-                              class="fa fa-question-circle-o"
-                              aria-hidden="true"
-                            />
-                          </span>
-                        </td>
-                        <td>
-                          <span className="worked-status">
-                            <i
-                              class="fa fa-check-circle-o"
-                              aria-hidden="true"
-                            />
-                          </span>
-                        </td>
-                        <td>
-                          <span className="off-status">
-                            <i class="fa fa-times-circle" aria-hidden="true" />
-                          </span>
-                        </td>
-                        <td>
-                          <span className="no-shift">Không có ca</span>
-                        </td>
-                        <td>
-                          <span className="worked-status">
-                            <i
-                              class="fa fa-check-circle-o"
-                              aria-hidden="true"
-                            />
-                          </span>
-                        </td>
-                        <td>
-                          <span className="off-status">
-                            <i class="fa fa-times-circle" aria-hidden="true" />
-                          </span>
-                        </td>
-                        <td>
-                          <span className="late-status">
-                            <i class="fa fa-clock-o" aria-hidden="true" />
-                          </span>
-                        </td>
-                        <td>
-                          <span className="late-status">
-                            <i class="fa fa-clock-o" aria-hidden="true" />
-                          </span>
-                        </td>
-                        <td>
-                          <span className="late-status">
-                            <i class="fa fa-clock-o" aria-hidden="true" />
-                          </span>
-                        </td>
-                        <td>
-                          <span className="forgot-status">
-                            <i
-                              class="fa fa-question-circle-o"
-                              aria-hidden="true"
-                            />
-                          </span>
-                        </td>
-                        <td>
-                          <span className="forgot-status">
-                            <i
-                              class="fa fa-question-circle-o"
-                              aria-hidden="true"
-                            />
-                          </span>
-                        </td>
-                        <td>
-                          <span className="not-start">Chưa bắt đầu</span>
-                        </td>
-                        <td>
-                          <span className="no-shift">Không có ca</span>
-                        </td>
-                        <td>
-                          <span className="not-start">Chưa bắt đầu</span>
-                        </td>
-                        <td>
-                          <span className="no-shift">Không có ca</span>
-                        </td>
-                        <td>
-                          <span className="no-shift">Không có ca</span>
-                        </td>
-                        <td>
-                          <span className="no-shift">Không có ca</span>
-                        </td>
-                        <td>
-                          <span className="no-shift">Không có ca</span>
-                        </td>
+                        <td className="header-in">IN</td>
+                        <td className="header-out">Out</td>
+                        <td className="header-result">Kết quả</td>
+                        <td className="header-in">IN</td>
+                        <td className="header-out">Out</td>
+                        <td className="header-result">Kết quả</td>
+                        <td className="header-in">IN</td>
+                        <td className="header-out">Out</td>
+                        <td className="header-result">Kết quả</td>
+                        <td className="header-in">IN</td>
+                        <td className="header-out">Out</td>
+                        <td className="header-result">Kết quả</td>
+                        <td className="header-in">IN</td>
+                        <td className="header-out">Out</td>
+                        <td className="header-result">Kết quả</td>
+                        <td className="header-in">IN</td>
+                        <td className="header-out">Out</td>
+                        <td className="header-result">Kết quả</td>
+                        <td className="header-in">IN</td>
+                        <td className="header-out">Out</td>
+                        <td className="header-result">Kết quả</td>
+                        <td className="header-in">IN</td>
+                        <td className="header-out">Out</td>
+                        <td className="header-result">Kết quả</td>
+                        <td className="header-in">IN</td>
+                        <td className="header-out">Out</td>
+                        <td className="header-result">Kết quả</td>
+                        <td className="header-in">IN</td>
+                        <td className="header-out">Out</td>
+                        <td className="header-result">Kết quả</td>
+                        <td className="header-in">IN</td>
+                        <td className="header-out">Out</td>
+                        <td className="header-result">Kết quả</td>
+                        <td className="header-in">IN</td>
+                        <td className="header-out">Out</td>
+                        <td className="header-result">Kết quả</td>
+                        <td className="header-in">IN</td>
+                        <td className="header-out">Out</td>
+                        <td className="header-result">Kết quả</td>
+                        <td className="header-in">IN</td>
+                        <td className="header-out">Out</td>
+                        <td className="header-result">Kết quả</td>
+                        <td className="header-in">IN</td>
+                        <td className="header-out">Out</td>
+                        <td className="header-result">Kết quả</td>
+                        <td className="header-in">IN</td>
+                        <td className="header-out">Out</td>
+                        <td className="header-result">Kết quả</td>
+                        <td className="header-in">IN</td>
+                        <td className="header-out">Out</td>
+                        <td className="header-result">Kết quả</td>
+                        <td className="header-in">IN</td>
+                        <td className="header-out">Out</td>
+                        <td className="header-result">Kết quả</td>
+                        <td className="header-in">IN</td>
+                        <td className="header-out">Out</td>
+                        <td className="header-result">Kết quả</td>
+                        <td className="header-in">IN</td>
+                        <td className="header-out">Out</td>
+                        <td className="header-result">Kết quả</td>
                       </tr>
                       <tr>
-                        <td>Nguyễn Văn A</td>
-                        <td>
-                          <span className="worked-status">
-                            <i
-                              class="fa fa-check-circle-o"
-                              aria-hidden="true"
-                            />
-                          </span>
+                        <td className="result-in">9:00</td>
+                        <td className="result-out">11:25</td>
+                        <td class="result-ok">01</td>
+                        <td className="result-in">-</td>
+                        <td className="result-out">11:25</td>
+                        <td class="result-forgot-in">02</td>
+                        <td className="result-in">9:00</td>
+                        <td className="result-out">-</td>
+                        <td class="result-forgot-out">03</td>
+                        <td className="result-in">9:15</td>
+                        <td className="result-out">11:00</td>
+                        <td class="result-late-in">04</td>
+                        <td className="result-in">-</td>
+                        <td className="result-out">-</td>
+                        <td class="result-forgot-off">05</td>
+                        <td className="result-free"></td>
+                        <td className="result-free"></td>
+                        <td class="result-free"></td>
+                        <td className="result-free"></td>
+                        <td className="result-free"></td>
+                        <td class="result-free"></td>
+                        <td className="result-free"></td>
+                        <td className="result-free"></td>
+                        <td class="result-free"></td>
+                        <td className="result-free"></td>
+                        <td className="result-free"></td>
+                        <td class="result-free"></td>
+                        <td className="result-free"></td>
+                        <td className="result-free"></td>
+                        <td class="result-free"></td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
-                        <td>
-                          <span className="off-status">
-                            <i class="fa fa-times-circle" aria-hidden="true" />
-                          </span>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
-                        <td>
-                          <span className="no-shift">Không có ca</span>
+                        <td class="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
-                        <td>
-                          <span className="worked-status">
-                            <i
-                              class="fa fa-check-circle-o"
-                              aria-hidden="true"
-                            />
-                          </span>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
-                        <td>
-                          <span className="off-status">
-                            <i class="fa fa-times-circle" aria-hidden="true" />
-                          </span>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
-                        <td>
-                          <span className="no-shift">Không có ca</span>
+                        <td class="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
-                        <td>
-                          <span className="worked-status">
-                            <i
-                              class="fa fa-check-circle-o"
-                              aria-hidden="true"
-                            />
-                          </span>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
-                        <td>
-                          <span className="off-status">
-                            <i class="fa fa-times-circle" aria-hidden="true" />
-                          </span>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
-                        <td>
-                          <span className="late-status">
-                            <i class="fa fa-clock-o" aria-hidden="true" />
-                          </span>
+                        <td class="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
-                        <td>
-                          <span className="not-start">Chưa bắt đầu</span>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
-                        <td>
-                          <span className="no-shift">Không có ca</span>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
-                        <td>
-                          <span className="not-start">Chưa bắt đầu</span>
+                        <td class="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
-                        <td>
-                          <span className="no-shift">Không có ca</span>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
-                        <td>
-                          <span className="not-start">Chưa bắt đầu</span>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
-                        <td>
-                          <span className="no-shift">Không có ca</span>
+                        <td class="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
-                        <td>
-                          <span className="not-start">Chưa bắt đầu</span>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
-                        <td>
-                          <span className="no-shift">Không có ca</span>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
-                        <td>
-                          <span className="no-shift">Không có ca</span>
+                        <td class="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
-                        <td>
-                          <span className="no-shift">Không có ca</span>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
-                        <td>
-                          <span className="no-shift">Không có ca</span>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td class="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td class="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td class="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td class="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
                       </tr>
                     </tbody>
@@ -283,7 +279,7 @@ class CheckerTable extends Component {
             </div>
             <div className="row sumary">
               <div className="col-3 offset-md-9">
-                <span> Tổng kết quả : 2 </span>
+                <span> Tổng kết quả : 1 </span>
               </div>
             </div>
 
@@ -295,36 +291,34 @@ class CheckerTable extends Component {
               </div>
               <div className="row">
                 <div className="col-4">
-                  <span className="worked-status">
-                    <i class="fa fa-times-circle" aria-hidden="true" />
-                  </span>
+                  <span className="done-status">01</span>
                   <span className="noted">Check in đúng giờ</span>
                 </div>
               </div>
 
               <div className="row">
                 <div className="col-4">
-                  <span className="late-status">
-                    <i class="fa fa-clock-o" aria-hidden="true" />
-                  </span>
-                  <span className="noted">Check in trễ</span>
+                  <span className="forgot-in-status">02</span>
+                  <span className="noted">Quên check in</span>
                 </div>
               </div>
 
               <div className="row">
                 <div className="col-4">
-                  <span className="off-status">
-                    <i class="fa fa-clock-o" aria-hidden="true" />
-                  </span>
-                  <span className="noted">Nghỉ</span>
+                  <span className="forgot-out-status">03</span>
+                  <span className="noted">Quên check out</span>
                 </div>
               </div>
               <div className="row">
                 <div className="col-4">
-                  <span className="forgot-status">
-                    <i class="fa fa-question-circle-o" aria-hidden="true" />
-                  </span>
-                  <span className="noted">Quên check out</span>
+                  <span className="late-in-status">04</span>
+                  <span className="noted">Check in muộn</span>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-4">
+                  <span className="off-status">05</span>
+                  <span className="noted">Nghỉ làm</span>
                 </div>
               </div>
             </div>

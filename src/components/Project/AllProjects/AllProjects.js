@@ -7,6 +7,90 @@ class AllProjects extends Component {
     return (
       <Fragment>
         <Breadcum Menu="Dự án" SubMenu="Tổng dự án" />
+        <div className="container-fluid">
+          <div className="card-body">
+            <button
+              href="asd"
+              className="btn btn-info"
+              data-target="#createProject"
+              data-toggle="modal"
+            >
+              <i
+                className="fa fa-plus"
+                aria-hidden="true"
+                style={{ paddingRight: "5px" }}
+              />
+              Tạo dự án
+            </button>
+          </div>
+        </div>
+        {/* Modal create project */}
+        <div
+          className="modal fade"
+          id="createProject"
+          tabIndex="-1"
+          role="dialog"
+          aria-labelledby="createProject"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="createProject">
+                  Tạo dự án
+                </h5>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                Vui lòng chọn tập tin excel cần import
+                <div className="input-group mb-3">
+                  <select
+                    className="custom-select"
+                    id="inputGroupSelect02"
+                    value="0"
+                  >
+                    <option value="0">Chọn tập tin...</option>
+                    <option value="1">Project_Omo_version_1.xlsm</option>
+                    <option value="2">Project_Samsung_version_1.xlsm</option>
+                    <option value="3">roject_Apple_version_1.xlsm</option>
+                  </select>
+                  <div className="input-group-append">
+                    <label
+                      className="input-group-text"
+                      htmlFor="inputGroupSelect02"
+                    >
+                      Excel
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Đóng
+                </button>
+
+                <NavLink
+                  to="/all-project/prepare-project"
+                  className="btn btn-primary"
+                  type="submit"
+                >
+                  Lưu
+                </NavLink>
+              </div>
+            </div>
+          </div>
+        </div>
         <section className="projects no-padding-top">
           <div className="container-fluid">
             <div className="card-header d-flex align-items-center">

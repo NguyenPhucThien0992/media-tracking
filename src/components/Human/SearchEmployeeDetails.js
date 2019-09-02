@@ -1,18 +1,19 @@
 import React, { Component, Fragment } from "react";
-import "./../../styles/Human/Human.css";
 import { NavLink } from "react-router-dom";
 import Breadcum from "./../Breadcum/Breadcum";
-class AgencyDetailed extends Component {
+import "./../../styles/Human/SearchEmployee.css";
+
+class SearchEmployeeDetails extends Component {
   render() {
     return (
       <Fragment>
-        <Breadcum Menu="Nhân sự" SubMenu="Nhân viên" />
+        <Breadcum Menu="Nhân sự" SubMenu="Chi Tiết Nhân viên" />
         <div class="container emp-profile">
           <div className="card">
             <div className="card-body">
               <form method="post">
                 <div class="row">
-                  {/* <div class="col-md-4">
+                  <div class="col-md-4">
                     <div class="profile-img">
                       <img
                         src="https://scontent.fsgn8-1.fna.fbcdn.net/v/t1.0-9/66202288_2413380262049068_281577970026414080_n.jpg?_nc_cat=102&_nc_oc=AQmT75QSKpCnsVXfzrP4f0GOyv0BVeBZIdLUpyjyhEIGsg0OxyfaKvThnIY9dy-0NZM&_nc_ht=scontent.fsgn8-1.fna&oh=7baf37a3748b14fba2e0084271a5e193&oe=5DEC2258"
@@ -20,11 +21,14 @@ class AgencyDetailed extends Component {
                         style={{ width: "300px", height: "300px" }}
                       />
                     </div>
-                  </div> */}
+                  </div>
                   <div class="col-md-6">
                     <div class="profile-head">
-                      <h5>Công ty trách nhiệm hữu hạn OMG</h5>
-
+                      <h5>Nguyễn Phúc Thiện</h5>
+                      <h6>Director</h6>
+                      {/* <p class="proile-rating">
+                  RANKINGS : <span>8/10</span>
+                </p> */}
                       <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
                           <a
@@ -36,25 +40,106 @@ class AgencyDetailed extends Component {
                             aria-controls="home"
                             aria-selected="true"
                           >
-                            Thông tin công ty dịch vụ
+                            Thông tin cá nhân
                           </a>
                         </li>
                       </ul>
                     </div>
                   </div>
                   <div class="col-md-2">
-                    <NavLink
-                      to="/admin/add-new-agency"
-                      className="btn btn-primary"
-                      style={{ textDecoration: "none" }}
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-toggle="modal"
+                      data-target="#addNewEmployee"
                     >
-                      Cập nhật
-                    </NavLink>
+                      Thêm mới nhân viên
+                    </button>
+                    <div
+                      className="modal fade"
+                      id="addNewEmployee"
+                      tabIndex="-1"
+                      role="dialog"
+                      aria-labelledby="addNewEmployee"
+                      aria-hidden="true"
+                    >
+                      <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                          <div className="modal-header">
+                            <h5 className="modal-title" id="addNewEmployee">
+                              Thêm mới nhân viên
+                            </h5>
+
+                            <button
+                              type="button"
+                              className="close"
+                              data-dismiss="modal"
+                              aria-label="Close"
+                            >
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div className="modal-body">
+                            Vui lòng chọn chức vụ cho nhân viên
+                          </div>
+                          <div className="col-sm-8 offset-2 dropdown-area">
+                            <select name="account" class="form-control mb-3">
+                              <option>Director</option>
+                              <option>Manager</option>
+                              <option> Teamleader</option>
+                              <option>Field Operator</option>
+                            </select>
+
+                            {/* <div className="dropdown">
+                              <button
+                                className="btn btn-secondary dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuButton"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              >
+                                Chức vụ nhân viên
+                              </button>
+                              <div
+                                className="dropdown-menu"
+                                aria-labelledby="dropdownMenuButton"
+                              >
+                                <a className="dropdown-item" href="#d">
+                                  Director
+                                </a>
+                                <a className="dropdown-item" href="#d">
+                                  Manager
+                                </a>
+                                <a className="dropdown-item" href="#d">
+                                  Teamleader
+                                </a>
+                                <a className="dropdown-item" href="#d">
+                                  Field Operator
+                                </a>
+                              </div>
+                            </div> */}
+                          </div>
+                          <div className="modal-footer">
+                            <button
+                              type="button"
+                              className="btn btn-secondary"
+                              data-dismiss="modal"
+                            >
+                              Hủy
+                            </button>
+                            <button type="button" className="btn btn-primary">
+                              Thêm
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="profile-work">
+                <div className="row">
+                  <div className="col-md-4">
+                    <div className="profile-work">
                       {/* <p>WORK LINK</p>
                 <a href="ad">Website Link</a>
                 <br />
@@ -246,4 +331,4 @@ class AgencyDetailed extends Component {
   }
 }
 
-export default AgencyDetailed;
+export default SearchEmployeeDetails;

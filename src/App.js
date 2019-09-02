@@ -24,6 +24,7 @@ import ProfileEmployee from "./components/Human/ProfileEmployee";
 import Admin from "./components/Admin/Admin";
 import AddNewAgency from "./components/Admin/AddNewAgency";
 import AgencyDetailed from "./components/Admin/AgencyDetailed";
+import SearchEmployeeDetails from "./components/Human/SearchEmployeeDetails";
 
 class App extends Component {
   showContentMenus = routes => {
@@ -81,8 +82,21 @@ class App extends Component {
                 />
                 <Route path="/template" component={Template} />
                 <Route path="/human" component={Human} exact />
-                <Route path="/human/details" component={CreateNewEmployee} />
-                <Route path="/human/profile" component={ProfileEmployee} />
+                <Route
+                  path="/human/search/details"
+                  exact
+                  component={SearchEmployeeDetails}
+                ></Route>
+                <Route
+                  path="/human/details"
+                  exact
+                  component={CreateNewEmployee}
+                />
+                <Route
+                  path="/human/profile"
+                  exact
+                  component={ProfileEmployee}
+                />
                 <Route path="/checker-table" component={CheckerTable} />
                 <Route path="/on-working" component={OnWorking} />
                 <Route path="/day-off" component={DayOff} />
