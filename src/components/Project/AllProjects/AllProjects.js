@@ -144,20 +144,46 @@ class AllProjects extends Component {
                       <td>20/02/2020</td>
                       <td>100</td>
                       <td>
-                        <NavLink
-                          to="/all-project/prepare-project"
-                          className="btn btn-success"
-                          style={{ marginRight: "10px" }}
-                        >
-                          Chi tiết
-                        </NavLink>
-                        <button
-                          className="btn btn-danger"
-                          data-toggle="modal"
-                          data-target="#deletePrepareProject"
-                        >
-                          Xóa
-                        </button>
+                        <div className="dropdown-area">
+                          <div className="dropdown">
+                            <button
+                              className="btn btn-secondary dropdown-toggle"
+                              type="button"
+                              id="dropdownMenuButton"
+                              data-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false"
+                            >
+                              Hành động
+                            </button>
+                            <div
+                              className="dropdown-menu"
+                              aria-labelledby="dropdownMenuButton"
+                            >
+                              <NavLink
+                                to="/all-project/prepare-project"
+                                className="dropdown-item btn btn-primary"
+                                style={{ marginRight: "10px" }}
+                              >
+                                Chi tiết
+                              </NavLink>
+                              <button
+                                className="dropdown-item btn btn-success"
+                                data-toggle="modal"
+                                data-target="#projectPrepareStatus"
+                              >
+                                Trạng thái
+                              </button>
+                              <button
+                                className="btn btn-danger dropdown-item"
+                                data-toggle="modal"
+                                data-target="#deletePrepareProject"
+                              >
+                                Xóa
+                              </button>
+                            </div>
+                          </div>
+                        </div>
                       </td>
                     </tr>
                   </tbody>
@@ -200,6 +226,48 @@ class AllProjects extends Component {
                   </button>
                   <button type="button" className="btn btn-primary">
                     Xóa
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* Modal cho chỉnh sửa trạng thái */}
+          <div
+            className="modal fade"
+            id="projectPrepareStatus"
+            tabIndex="-1"
+            role="dialog"
+            aria-labelledby="projectPrepareStatus"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog" role="document">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="projectPrepareStatus">
+                    Thay đổi trạng thái dự án
+                  </h5>
+                  <button
+                    type="button"
+                    className="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div className="modal-body">
+                  Bạn có chắc muốn thay đổi trạng thái dự án sang hoàn thành
+                </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Không
+                  </button>
+                  <button type="button" className="btn btn-primary">
+                    Có
                   </button>
                 </div>
               </div>
@@ -261,17 +329,131 @@ class AllProjects extends Component {
                       <td>20/02/2020</td>
                       <td>100</td>
                       <td>
-                        <NavLink
-                          to="/all-project/onprogress-project"
-                          className="btn btn-success"
-                          style={{ marginRight: "10px" }}
-                        >
-                          Chi tiết
-                        </NavLink>
+                        <div className="dropdown-area">
+                          <div className="dropdown">
+                            <button
+                              className="btn btn-secondary dropdown-toggle"
+                              type="button"
+                              id="dropdownMenuButton"
+                              data-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false"
+                            >
+                              Hành động
+                            </button>
+                            <div
+                              className="dropdown-menu"
+                              aria-labelledby="dropdownMenuButton"
+                            >
+                              <NavLink
+                                to="/all-project/onprogress-project"
+                                className="dropdown-item btn btn-primary"
+                              >
+                                Chi tiết
+                              </NavLink>
+                              <button
+                                className="dropdown-item btn btn-success"
+                                data-toggle="modal"
+                                data-target="#projectPrepareStatus"
+                              >
+                                Trạng thái
+                              </button>
+                              <button
+                                className="btn btn-danger dropdown-item"
+                                data-toggle="modal"
+                                data-target="#deleteOnProgressProject"
+                              >
+                                Xóa
+                              </button>
+                            </div>
+                          </div>
+                        </div>
                       </td>
                     </tr>
                   </tbody>
                 </table>
+              </div>
+            </div>
+          </div>
+          {/* Modal xóa dự án đang chạy */}
+          <div
+            className="modal fade"
+            id="deleteOnProgressProject"
+            tabIndex="-1"
+            role="dialog"
+            aria-labelledby="deleteOnProgressProject"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog" role="document">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="deleteOnProgressProject">
+                    Xóa dự án
+                  </h5>
+                  <button
+                    type="button"
+                    className="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div className="modal-body">Bạn có chắc muốn xóa dự án này</div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Không
+                  </button>
+                  <button type="button" className="btn btn-primary">
+                    Xóa
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* Modal cho chỉnh sửa trạng thái dự án đang chạy*/}
+          <div
+            className="modal fade"
+            id="projectOnProgressStatus"
+            tabIndex="-1"
+            role="dialog"
+            aria-labelledby="projectOnProgressStatus"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog" role="document">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="projectOnProgressStatus">
+                    Thay đổi trạng thái dự án
+                  </h5>
+                  <button
+                    type="button"
+                    className="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div className="modal-body">
+                  Bạn có chắc muốn thay đổi trạng thái dự án sang hoàn thành
+                </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Không
+                  </button>
+                  <button type="button" className="btn btn-primary">
+                    Có
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -331,20 +513,39 @@ class AllProjects extends Component {
                       <td>20/02/2020</td>
                       <td>100</td>
                       <td>
-                        <NavLink
-                          to="/all-project/complete-project"
-                          className="btn btn-success"
-                          style={{ marginRight: "10px" }}
-                        >
-                          Chi tiết
-                        </NavLink>
-                        <button
-                          className="btn btn-danger"
-                          data-target="#deleteCompleteProject"
-                          data-toggle="modal"
-                        >
-                          Xóa
-                        </button>
+                        <div className="dropdown-area">
+                          <div className="dropdown">
+                            <button
+                              className="btn btn-secondary dropdown-toggle"
+                              type="button"
+                              id="dropdownMenuButton"
+                              data-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false"
+                            >
+                              Hành động
+                            </button>
+                            <div
+                              className="dropdown-menu"
+                              aria-labelledby="dropdownMenuButton"
+                            >
+                              <NavLink
+                                to="/all-project/complete-project"
+                                className="dropdown-item btn btn-primary"
+                              >
+                                Chi tiết
+                              </NavLink>
+
+                              <button
+                                className="btn btn-danger dropdown-item"
+                                data-toggle="modal"
+                                data-target="#deleteCompleteProject"
+                              >
+                                Xóa
+                              </button>
+                            </div>
+                          </div>
+                        </div>
                       </td>
                     </tr>
                   </tbody>

@@ -25,6 +25,7 @@ import Admin from "./components/Admin/Admin";
 import AddNewAgency from "./components/Admin/AddNewAgency";
 import AgencyDetailed from "./components/Admin/AgencyDetailed";
 import SearchEmployeeDetails from "./components/Human/SearchEmployeeDetails";
+import ModifyImportedStore from "./components/Project/AllProjects/ModifyImportedStore";
 
 class App extends Component {
   showContentMenus = routes => {
@@ -79,6 +80,10 @@ class App extends Component {
                 <Route
                   path="/all-project/complete-project"
                   component={CompleteProjects}
+                />
+                <Route
+                  path="/all-project/modify-imported-store"
+                  component={ModifyImportedStore}
                 />
                 <Route path="/template" component={Template} />
                 <Route path="/human" component={Human} exact />

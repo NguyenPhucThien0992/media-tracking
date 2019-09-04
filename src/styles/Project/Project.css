@@ -1,6 +1,8 @@
+/* Prepare project  */
 .table-checker {
   margin-top: 30px;
 }
+
 .table-wrapper {
   overflow-x: scroll;
   overflow-y: visible;
@@ -14,6 +16,7 @@ th {
   padding: 5px 20px;
   width: 100px;
 }
+
 /* 
   th:first-child {
     position: fixed;
@@ -24,11 +27,13 @@ th {
   border-collapse: collapse;
   width: 100%;
 }
+
 #customers td,
 #customers th {
   border: 1px solid #ddd;
   padding: 8px;
 }
+
 #customers tr:hover {
   background-color: #ddd;
 }
@@ -39,4 +44,52 @@ th {
   text-align: left;
   background-color: #4caf50;
   color: white;
+}
+
+
+/* hover add new element */
+tbody tr td.table-store-code:hover span.table-store-code-edit {
+  display: block;
+}
+
+tbody tr td.table-store-code span.table-store-code-edit {
+  display: none;
+}
+
+.client .client-avatar {
+  width: 50px;
+  height: 70px;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+
+
+
+/* Modify imported store  COMPONENT area */
+.brand-store:hover div span.brand-store-delete {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.brand-store div span.brand-store-delete {
+  display: none;
+}
+
+.brand-store-index {
+  padding-bottom: 0px;
+}
+
+.brand-store-name {
+  margin-left: 15px;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+tbody tr td.store-column span.store-edit-info {
+  display: none
+}
+
+tbody tr.store-row:hover td.store-column span.store-edit-info {
+  display: inline-block
 }

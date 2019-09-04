@@ -16,9 +16,9 @@ class Admin extends Component {
                     <tr>
                       <th>#</th>
                       <th>Tên đối tác</th>
-                      <th>Tên đăng nhập</th>
+
                       <th>Loại tài khoản</th>
-                      <th>Ngàyk ích hoạt</th>
+                      <th>Ngày kích hoạt</th>
                       <th>Tổng tài khoản đang dùng</th>
                       <th>Tổng tài khoản còn lại</th>
                       <th>Tình trạng</th>
@@ -29,7 +29,7 @@ class Admin extends Component {
                     <tr>
                       <th>1</th>
                       <td>Công ty Omo</td>
-                      <td>OmoAdmin</td>
+
                       <td>
                         <span style={{ color: "green", fontWeight: "bold" }}>
                           Cơ bản
@@ -42,20 +42,39 @@ class Admin extends Component {
                         Đang hoạt động
                       </td>
                       <td>
-                        <NavLink
-                          to="/admin/add-new-agency"
-                          className="btn btn-primary"
-                        >
-                          Cập nhật
-                        </NavLink>
+                        <div className="dropdown-area">
+                          <div className="dropdown">
+                            <button
+                              className="btn btn-secondary dropdown-toggle"
+                              type="button"
+                              id="dropdownMenuButton"
+                              data-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false"
+                            >
+                              Hành động
+                            </button>
 
-                        <button
-                          className="btn btn-danger"
-                          data-toggle="modal"
-                          data-target="#deleteAgency1"
-                        >
-                          Xóa
-                        </button>
+                            <div
+                              className="dropdown-menu"
+                              aria-labelledby="dropdownMenuButton"
+                            >
+                              <NavLink
+                                className="btn btn-warning dropdown-item"
+                                to="/admin/agency/details"
+                              >
+                                Chi tiết
+                              </NavLink>
+                              <button
+                                className="btn btn-danger dropdown-item"
+                                data-toggle="modal"
+                                data-target="#deleteAgency1"
+                              >
+                                Xóa
+                              </button>
+                            </div>
+                          </div>
+                        </div>
                         {/* Modal xóa agency */}
                         <div
                           className="modal fade"
@@ -107,7 +126,7 @@ class Admin extends Component {
                     <tr>
                       <th>2</th>
                       <td>Công ty Comfort</td>
-                      <td>ComfortAdmin</td>
+
                       <td>
                         <span style={{ color: "pink", fontWeight: "bold" }}>
                           Nâng cao 1
@@ -185,7 +204,6 @@ class Admin extends Component {
                     <tr>
                       <th>3</th>
                       <td>Công ty Tide</td>
-                      <td>TideAdmin</td>
                       <td>
                         <span style={{ color: "blue", fontWeight: "bold" }}>
                           Tùy chọn

@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from "react";
 import Breadcum from "./../Breadcum/Breadcum";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 class DayOff extends Component {
   render() {
     return (
@@ -51,12 +53,10 @@ class DayOff extends Component {
                         Tháng
                       </span>
                     </div>
-                    <input
-                      type="month"
-                      class="form-control"
-                      aria-label="Sizing example input"
-                      aria-describedby="inputGroup-sizing-sm"
-                    />
+                    <DatePicker
+                      placeholderText="Chọn tháng"
+                      dateFormat="YYYY/MM/DD HH:mm"
+                    ></DatePicker>
                   </div>
 
                   <div class="input-group input-group-sm mb-3 col-3">
@@ -65,12 +65,10 @@ class DayOff extends Component {
                         Ngày
                       </span>
                     </div>
-                    <input
-                      type="date"
-                      class="form-control"
-                      aria-label="Sizing example input"
-                      aria-describedby="inputGroup-sizing-sm"
-                    />
+                    <DatePicker
+                      placeholderText="Chọn ngày"
+                      dateFormat="DD"
+                    ></DatePicker>
                   </div>
                   <div class="input-group input-group-sm mb-3 col-3">
                     <div class="input-group-prepend">
@@ -130,17 +128,6 @@ class DayOff extends Component {
                     >
                       Danh sách đã duyệt
                     </a>
-                    {/* <a
-                      className="nav-item nav-link"
-                      id="nav-contact-tab"
-                      data-toggle="tab"
-                      href="#rejected-list"
-                      role="tab"
-                      aria-controls="nav-contact"
-                      aria-selected="false"
-                    >
-                      Danh sách hủy
-                    </a> */}
                   </div>
                 </nav>
                 <div className="tab-content" id="nav-tabContent">
@@ -244,7 +231,7 @@ class DayOff extends Component {
                             <td>Bận công việc riêng, chăm sóc mẹ ốm</td>
                             <td>
                               <button type="button" class="btn btn-success">
-                                Đồng ý
+                                Chấp nhận
                               </button>
                               <button type="button" class="btn btn-danger">
                                 Từ chối
@@ -267,8 +254,10 @@ class DayOff extends Component {
                           <th>#</th>
                           <th>Họ tên</th>
                           <th>Avatar</th>
+                          <th>Loại phép</th>
                           <th>Ngày nghỉ</th>
                           <th>Ca nghỉ</th>
+                          <th>Lí do</th>
                           <th>Hành động</th>
                         </tr>
                       </thead>
@@ -288,8 +277,12 @@ class DayOff extends Component {
                               }}
                             />
                           </td>
+                          <td>
+                            <span class="badge badge-warning">Đổi ca</span>
+                          </td>
                           <td>29/09/2019</td>
                           <td>Ca 1</td>
+                          <td>Bận công việc riêng, chăm sóc mẹ ốm</td>
                           <td>
                             <button type="button" class="btn btn-success">
                               Đồng ý
@@ -314,9 +307,11 @@ class DayOff extends Component {
                           <th>#</th>
                           <th>Họ tên</th>
                           <th>Avatar</th>
+                          <th>Loại phép</th>
                           <th>Ngày nghỉ</th>
                           <th>Ca nghỉ</th>
-                          <th class="col-3">Hành động</th>
+                          <th>Lí do</th>
+                          <th>Hành động</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -335,8 +330,12 @@ class DayOff extends Component {
                               }}
                             />
                           </td>
+                          <td>
+                            <span class="badge badge-primary">Nghỉ Phép</span>
+                          </td>
                           <td>25/09/2019</td>
                           <td>Ca 2</td>
+                          <td>Bận công việc riêng, chăm sóc mẹ ốm</td>
                           <td>
                             <span class="badge badge-pill badge-danger">
                               Từ chối
@@ -358,8 +357,14 @@ class DayOff extends Component {
                               }}
                             />
                           </td>
+                          <td>
+                            <span class="badge badge-danger">
+                              Rút khỏi dự án
+                            </span>
+                          </td>
                           <td>25/09/2019</td>
                           <td>Ca 1</td>
+                          <td>Bận công việc riêng, chăm sóc mẹ ốm</td>
                           <td>
                             <span class="badge badge-pill badge-success">
                               Chấp nhận
@@ -369,14 +374,6 @@ class DayOff extends Component {
                       </tbody>
                     </table>
                   </div>
-                  {/* <div
-                    className="tab-pane fade"
-                    id="rejected-list"
-                    role="tabpanel"
-                    aria-labelledby="nav-contact-tab"
-                  >
-                    ...
-                  </div> */}
                 </div>
               </div>
             </div>
