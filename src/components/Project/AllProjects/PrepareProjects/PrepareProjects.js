@@ -172,13 +172,6 @@ class PrepareProjects extends Component {
                                     Ngày bắt đầu
                                   </label>
                                   <div class="col-sm-9">
-                                    {/* <input
-                                      id="inputHorizontalWarning"
-                                      type="text"
-                                      placeholder="Pasword"
-                                      value="03-30-2019"
-                                      class="form-control form-control-warning"
-                                    /> */}
                                     <DatePicker
                                       placeholderText="Ngày bắt đầu"
                                       value="03-30-2019"
@@ -354,24 +347,30 @@ class PrepareProjects extends Component {
                             <tbody>
                               <tr>
                                 <th scope="row">1</th>
-                                <td>Supermarket</td>
-                                <td>BigC</td>
+                                <td className="table-store-brand">
+                                  Supermarket
+                                </td>
+                                <td className="table-store-type">BigC</td>
                                 <td className="table-store-code">
-                                  <span>BigC001</span>
-                                  <span className="table-store-code-edit">
-                                    <a
-                                      href="fdsjk"
-                                      data-toggle="modal"
-                                      data-target="#editStoreCode"
-                                    >
-                                      <i
-                                        class="fa fa-pencil-square-o"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </a>
+                                  <span>
+                                    BigC001
+                                    <span className="table-store-code-edit">
+                                      <a
+                                        href="fdsjk"
+                                        data-toggle="modal"
+                                        data-target="#editStoreCode"
+                                      >
+                                        <i
+                                          class="fa fa-pencil-square-o"
+                                          aria-hidden="true"
+                                        ></i>
+                                      </a>
+                                    </span>
                                   </span>
                                 </td>
-                                <td>BIG-C MIỀN ĐÔNG</td>
+                                <td className="table-store-name">
+                                  BIG-C MIỀN ĐÔNG
+                                </td>
 
                                 <td>1</td>
                                 <td>6</td>
@@ -427,6 +426,7 @@ class PrepareProjects extends Component {
                                       data-toggle="modal"
                                       data-target="#addEmployee1"
                                     />
+                                    {/* Modal add new employee for role */}
                                     <div
                                       id="addEmployee1"
                                       tabIndex="-1"
@@ -914,7 +914,9 @@ class PrepareProjects extends Component {
                                         </div>
 
                                         <div className="form-group">
-                                          <label>Số lượng nhân viên</label>
+                                          <label>
+                                            Số lượng nhân viên: PG role
+                                          </label>
                                           <input
                                             id="inputHorizontalSuccess"
                                             type="number"
@@ -946,10 +948,89 @@ class PrepareProjects extends Component {
                                               src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"
                                               alt="..."
                                               class="img-fluid rounded-circle"
+                                              data-toggle="collapse"
+                                              href="#collapsePgrole"
+                                              role="button"
+                                              aria-expanded="false"
+                                              aria-controls="collapsePgrole"
                                             />
                                           </div>
                                         </div>
 
+                                        <div
+                                          className="form-group collapse"
+                                          id="collapsePgrole"
+                                        >
+                                          <label>
+                                            Vui lòng nhập số điện thoại nhân
+                                            viên
+                                          </label>
+                                          <input
+                                            id="inputHorizontalSuccess"
+                                            type="number"
+                                            placeholder="Vui lòng nhập số lượng nhân viên cho công việc"
+                                            class="form-control form-control-success"
+                                          />
+                                        </div>
+
+                                        <div className="form-group">
+                                          <label>
+                                            Số lượng nhân viên: SS role
+                                          </label>
+                                          <input
+                                            id="inputHorizontalSuccess"
+                                            type="number"
+                                            placeholder="Vui lòng nhập số lượng nhân viên cho công việc"
+                                            class="form-control form-control-success"
+                                          />
+                                        </div>
+
+                                        <div className="form-group">
+                                          <label className="modal-add-new-job">
+                                            Vui lòng chọn nhân viên
+                                          </label>
+                                          <div class="client-avatar">
+                                            <img
+                                              src="https://scontent.fsgn8-1.fna.fbcdn.net/v/t1.0-9/66202288_2413380262049068_281577970026414080_n.jpg?_nc_cat=102&_nc_oc=AQmT75QSKpCnsVXfzrP4f0GOyv0BVeBZIdLUpyjyhEIGsg0OxyfaKvThnIY9dy-0NZM&_nc_ht=scontent.fsgn8-1.fna&oh=7baf37a3748b14fba2e0084271a5e193&oe=5DEC2258"
+                                              alt="..."
+                                              class="img-fluid rounded-circle"
+                                            />
+                                          </div>
+                                          <div class="client-avatar">
+                                            <img
+                                              src="https://scontent.fsgn8-1.fna.fbcdn.net/v/t1.0-9/66202288_2413380262049068_281577970026414080_n.jpg?_nc_cat=102&_nc_oc=AQmT75QSKpCnsVXfzrP4f0GOyv0BVeBZIdLUpyjyhEIGsg0OxyfaKvThnIY9dy-0NZM&_nc_ht=scontent.fsgn8-1.fna&oh=7baf37a3748b14fba2e0084271a5e193&oe=5DEC2258"
+                                              alt="..."
+                                              class="img-fluid rounded-circle"
+                                            />
+                                          </div>
+                                          <div class="client-avatar">
+                                            <img
+                                              src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"
+                                              alt="..."
+                                              class="img-fluid rounded-circle"
+                                              data-toggle="collapse"
+                                              href="#collapseSsRole"
+                                              role="button"
+                                              aria-expanded="false"
+                                              aria-controls="collapseSsRole"
+                                            />
+                                          </div>
+                                        </div>
+                                        <div
+                                          className="form-group collapse"
+                                          id="collapseSsRole"
+                                        >
+                                          <label>
+                                            Vui lòng nhập số điện thoại nhân
+                                            viên
+                                          </label>
+                                          <input
+                                            id="inputHorizontalSuccess"
+                                            type="number"
+                                            placeholder="Vui lòng nhập số lượng nhân viên cho công việc"
+                                            class="form-control form-control-success"
+                                          />
+                                        </div>
                                         <div className="form-group">
                                           <label>Service</label>
                                           <input
@@ -1134,10 +1215,30 @@ class PrepareProjects extends Component {
                                               src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"
                                               alt="..."
                                               class="img-fluid rounded-circle"
+                                              data-toggle="collapse"
+                                              href="#collapseAddPGRole"
+                                              role="button"
+                                              aria-expanded="false"
+                                              aria-controls="collapseAddPGRole"
                                             />
                                           </div>
                                         </div>
-
+                                        <div
+                                          className="form-group"
+                                          class="collapse"
+                                          id="collapseAddPGRole"
+                                        >
+                                          <label>
+                                            Vui lòng nhập số điện thoại nhân
+                                            viên
+                                          </label>
+                                          <input
+                                            id="inputHorizontalSuccess"
+                                            type="number"
+                                            placeholder="Vui lòng nhập số lượng nhân viên cho công việc"
+                                            class="form-control form-control-success"
+                                          />
+                                        </div>
                                         <div className="form-group">
                                           <label>Số lượng SS</label>
                                           <input
@@ -1168,10 +1269,30 @@ class PrepareProjects extends Component {
                                               src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"
                                               alt="..."
                                               class="img-fluid rounded-circle"
+                                              data-toggle="collapse"
+                                              href="#collapseAddSSRole"
+                                              role="button"
+                                              aria-expanded="false"
+                                              aria-controls="collapseAddSSRole"
                                             />
                                           </div>
                                         </div>
-
+                                        <div
+                                          className="form-group"
+                                          class="collapse"
+                                          id="collapseAddSSRole"
+                                        >
+                                          <label>
+                                            Vui lòng nhập số điện thoại nhân
+                                            viên
+                                          </label>
+                                          <input
+                                            id="inputHorizontalSuccess"
+                                            type="number"
+                                            placeholder="Vui lòng nhập số lượng nhân viên cho công việc"
+                                            class="form-control form-control-success"
+                                          />
+                                        </div>
                                         <div className="form-group">
                                           <label>Service</label>
                                           <input

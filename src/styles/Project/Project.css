@@ -48,13 +48,38 @@ th {
 
 
 /* hover add new element */
-tbody tr td.table-store-code:hover span.table-store-code-edit {
+td.table-store-code:hover span.table-store-code-edit {
   display: block;
 }
+
+/* 
+td.table-store-brand:hover span.table-store-code-edit {
+  display: block;
+}
+
+td.table-store-type:hover span.table-store-code-edit {
+  display: block;
+}
+
+td.table-store-name:hover span.table-store-code-edit {
+  display: block;
+} */
 
 tbody tr td.table-store-code span.table-store-code-edit {
   display: none;
 }
+
+/* tbody tr td.table-store-type span.table-store-code-edit {
+  display: none;
+}
+
+tbody tr td.table-store-name span.table-store-code-edit {
+  display: none;
+}
+
+tbody tr td.table-store-brand span.table-store-code-edit {
+  display: none;
+} */
 
 .client .client-avatar {
   width: 50px;

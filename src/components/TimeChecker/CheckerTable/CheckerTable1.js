@@ -4,7 +4,7 @@ import Breadcum from "./../../Breadcum/Breadcum";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-class CheckerTable extends Component {
+class CheckerTable1 extends Component {
   render() {
     return (
       <Fragment>
@@ -67,139 +67,130 @@ class CheckerTable extends Component {
                   <table id="customers" className="data">
                     <thead>
                       <tr>
-                        <th rowspan="2">Nhân viên</th>
-                        <th colspan="3">Thứ hai 05/09</th>
-                        <th colspan="3">Thứ ba 06/09</th>
-                        <th colspan="3">Thứ tư 07/09</th>
-                        <th colspan="3">Thứ năm 08/09</th>
-                        <th colspan="3">Thứ thứ 09/09</th>
-                        <th colspan="3">Thứ bảy 10/09</th>
-                        <th colspan="3">Chủ nhật 11/09</th>
-                        <th colspan="3">Thứ hai 12/09</th>
-                        <th colspan="3">Thứ ba 13/09</th>
-                        <th colspan="3">Thứ tư 14/09</th>
-                        <th colspan="3">Thứ năm 15/09</th>
-                        <th colspan="3">Thứ sáu 16/09</th>
-                        <th colspan="3">Thứ bảy 17/09</th>
-                        <th colspan="3">Chủ nhật 18/09</th>
-                        <th colspan="3">Thứ hai 19/09</th>
-                        <th colspan="3">Thứ ba 20/09</th>
-                        <th colspan="3">Thứ tư 21/09</th>
-                        <th colspan="3">Thứ năm 22/09</th>
-                        <th colspan="3">Thứ sáu 23/09</th>
-                        <th colspan="3">Thứ bảy 24/09</th>
+                        <th rowspan="3">Nhân viên</th>
+                        <th rowspan="3">Loại</th>
+                        <th>Thứ hai 05/09</th>
+                        <th>Thứ ba 06/09</th>
+                        <th>Thứ tư 07/09</th>
+                        <th>Thứ năm 08/09</th>
+                        <th>Thứ thứ 09/09</th>
+                        <th>Thứ bảy 10/09</th>
+                        <th>Chủ nhật 11/09</th>
+                        <th>Thứ hai 12/09</th>
+                        <th>Thứ ba 13/09</th>
+                        <th>Thứ tư 14/09</th>
+                        <th>Thứ năm 15/09</th>
+                        <th>Thứ sáu 16/09</th>
+                        <th>Thứ bảy 17/09</th>
+                        <th>Chủ nhật 18/09</th>
+                        <th>Thứ hai 19/09</th>
+                        <th>Thứ ba 20/09</th>
+                        <th>Thứ tư 21/09</th>
+                        <th>Thứ năm 22/09</th>
+                        <th>Thứ sáu 23/09</th>
+                        <th>Thứ bảy 24/09</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td rowspan="2" className="header-name">
+                        <td rowspan="3" className="header-name">
                           Nguyễn Văn A
                         </td>
                         <td className="header-in">IN</td>
-                        <td className="header-out">Out</td>
-                        <td className="header-result">Kết quả</td>
-                        <td className="header-in">IN</td>
-                        <td className="header-out">Out</td>
-                        <td className="header-result">Kết quả</td>
-                        <td className="header-in">IN</td>
-                        <td className="header-out">Out</td>
-                        <td className="header-result">Kết quả</td>
-                        <td className="header-in">IN</td>
-                        <td className="header-out">Out</td>
-                        <td className="header-result">Kết quả</td>
-                        <td className="header-in">IN</td>
-                        <td className="header-out">Out</td>
-                        <td className="header-result">Kết quả</td>
-                        <td className="header-in">IN</td>
-                        <td className="header-out">Out</td>
-                        <td className="header-result">Kết quả</td>
-                        <td className="header-in">IN</td>
-                        <td className="header-out">Out</td>
-                        <td className="header-result">Kết quả</td>
-                        <td className="header-in">IN</td>
-                        <td className="header-out">Out</td>
-                        <td className="header-result">Kết quả</td>
-                        <td className="header-in">IN</td>
-                        <td className="header-out">Out</td>
-                        <td className="header-result">Kết quả</td>
-                        <td className="header-in">IN</td>
-                        <td className="header-out">Out</td>
-                        <td className="header-result">Kết quả</td>
-                        <td className="header-in">IN</td>
-                        <td className="header-out">Out</td>
-                        <td className="header-result">Kết quả</td>
-                        <td className="header-in">IN</td>
-                        <td className="header-out">Out</td>
-                        <td className="header-result">Kết quả</td>
-                        <td className="header-in">IN</td>
-                        <td className="header-out">Out</td>
-                        <td className="header-result">Kết quả</td>
-                        <td className="header-in">IN</td>
-                        <td className="header-out">Out</td>
-                        <td className="header-result">Kết quả</td>
-                        <td className="header-in">IN</td>
-                        <td className="header-out">Out</td>
-                        <td className="header-result">Kết quả</td>
-                        <td className="header-in">IN</td>
-                        <td className="header-out">Out</td>
-                        <td className="header-result">Kết quả</td>
-                        <td className="header-in">IN</td>
-                        <td className="header-out">Out</td>
-                        <td className="header-result">Kết quả</td>
-                        <td className="header-in">IN</td>
-                        <td className="header-out">Out</td>
-                        <td className="header-result">Kết quả</td>
-                        <td className="header-in">IN</td>
-                        <td className="header-out">Out</td>
-                        <td className="header-result">Kết quả</td>
-                        <td className="header-in">IN</td>
-                        <td className="header-out">Out</td>
-                        <td className="header-result">Kết quả</td>
+                        <td className="result-in">9:00</td>
+                        <td className="result-in">-</td>
+                        <td className="result-in">9:00</td>
+                        <td className="result-in">9:15</td>
+                        <td className="result-in">9:15</td>
+                        <td className="result-in">-</td>
+                        <td className="result-free"></td>
+                        <td className="result-free"></td>
+                        <td className="result-free"></td>
+                        <td className="result-free"></td>
+                        <td className="result-free"></td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
                       </tr>
                       <tr>
-                        <td className="result-in">9:00</td>
-                        <td className="result-out">11:25</td>
-                        <td class="result-ok">01</td>
-
-                        <td className="result-in">-</td>
-                        <td className="result-out">11:25</td>
-                        <td class="result-forgot-in">02</td>
-
-                        <td className="result-in">9:00</td>
-                        <td className="result-out">-</td>
-                        <td class="result-forgot-out">03</td>
-
-                        <td className="result-in">9:15</td>
+                        <td className="header-out">OUT</td>
                         <td className="result-out">11:00</td>
-                        <td class="result-late-in">04</td>
-
-                        <td className="result-in">-</td>
+                        <td className="result-out">11:25</td>
                         <td className="result-out">-</td>
-                        <td class="result-forgot-off">05</td>
-
+                        <td className="result-out">11:00</td>
+                        <td className="result-out">-</td>
+                        <td className="result-out">-</td>
                         <td className="result-free"></td>
                         <td className="result-free"></td>
-                        <td class="result-free"></td>
-
                         <td className="result-free"></td>
                         <td className="result-free"></td>
-                        <td class="result-free"></td>
+                        <td className="result-free"></td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="header-result">KẾT QUẢ</td>
+                        <td className="result-ok">01</td>
+                        <td className="result-forgot-in">02</td>
+                        <td className="result-forgot-out">03</td>
+                        <td className="result-late-in">04</td>
+                        <td className="result-forgot-off">05</td>
+                        <td className="result-allow-off">06</td>
                         <td className="result-free"></td>
                         <td className="result-free"></td>
-                        <td class="result-free"></td>
                         <td className="result-free"></td>
                         <td className="result-free"></td>
-                        <td class="result-free"></td>
                         <td className="result-free"></td>
-                        <td className="result-free"></td>
-                        <td class="result-free"></td>
                         <td className="result-waiting">
-                          <i class="fa fa-pause" aria-hidden="true"></i>
-                        </td>
-                        <td className="result-waiting">
-                          <i class="fa fa-pause" aria-hidden="true"></i>
-                        </td>
-                        <td class="result-waiting">
                           <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
                         <td className="result-waiting">
@@ -208,7 +199,10 @@ class CheckerTable extends Component {
                         <td className="result-waiting">
                           <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
-                        <td class="result-waiting">
+                        <td className="result-waiting">
+                          <i class="fa fa-pause" aria-hidden="true"></i>
+                        </td>
+                        <td className="result-waiting">
                           <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
                         <td className="result-waiting">
@@ -217,70 +211,10 @@ class CheckerTable extends Component {
                         <td className="result-waiting">
                           <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
-                        <td class="result-waiting">
-                          <i class="fa fa-pause" aria-hidden="true"></i>
-                        </td>
                         <td className="result-waiting">
                           <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
                         <td className="result-waiting">
-                          <i class="fa fa-pause" aria-hidden="true"></i>
-                        </td>
-                        <td class="result-waiting">
-                          <i class="fa fa-pause" aria-hidden="true"></i>
-                        </td>
-                        <td className="result-waiting">
-                          <i class="fa fa-pause" aria-hidden="true"></i>
-                        </td>
-                        <td className="result-waiting">
-                          <i class="fa fa-pause" aria-hidden="true"></i>
-                        </td>
-                        <td class="result-waiting">
-                          <i class="fa fa-pause" aria-hidden="true"></i>
-                        </td>
-                        <td className="result-waiting">
-                          <i class="fa fa-pause" aria-hidden="true"></i>
-                        </td>
-                        <td className="result-waiting">
-                          <i class="fa fa-pause" aria-hidden="true"></i>
-                        </td>
-                        <td class="result-waiting">
-                          <i class="fa fa-pause" aria-hidden="true"></i>
-                        </td>
-                        <td className="result-waiting">
-                          <i class="fa fa-pause" aria-hidden="true"></i>
-                        </td>
-                        <td className="result-waiting">
-                          <i class="fa fa-pause" aria-hidden="true"></i>
-                        </td>
-                        <td class="result-waiting">
-                          <i class="fa fa-pause" aria-hidden="true"></i>
-                        </td>
-                        <td className="result-waiting">
-                          <i class="fa fa-pause" aria-hidden="true"></i>
-                        </td>
-                        <td className="result-waiting">
-                          <i class="fa fa-pause" aria-hidden="true"></i>
-                        </td>
-                        <td class="result-waiting">
-                          <i class="fa fa-pause" aria-hidden="true"></i>
-                        </td>
-                        <td className="result-waiting">
-                          <i class="fa fa-pause" aria-hidden="true"></i>
-                        </td>
-                        <td className="result-waiting">
-                          <i class="fa fa-pause" aria-hidden="true"></i>
-                        </td>
-                        <td class="result-waiting">
-                          <i class="fa fa-pause" aria-hidden="true"></i>
-                        </td>
-                        <td className="result-waiting">
-                          <i class="fa fa-pause" aria-hidden="true"></i>
-                        </td>
-                        <td className="result-waiting">
-                          <i class="fa fa-pause" aria-hidden="true"></i>
-                        </td>
-                        <td class="result-waiting">
                           <i class="fa fa-pause" aria-hidden="true"></i>
                         </td>
                       </tr>
@@ -365,4 +299,4 @@ class CheckerTable extends Component {
   }
 }
 
-export default CheckerTable;
+export default CheckerTable1;

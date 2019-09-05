@@ -85,8 +85,11 @@ class Menu extends Component {
                 <NavLink to="/checker-table">Bảng chấm công</NavLink>
               </li>
               <li>
-                <NavLink to="/on-working">Đang làm việc</NavLink>
+                <NavLink to="/checker-table1">Bảng chấm công 2</NavLink>
               </li>
+              {/* <li>
+                <NavLink to="/on-working">Đang làm việc</NavLink>
+              </li> */}
             </ul>
           </li>
 

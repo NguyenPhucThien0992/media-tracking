@@ -2,6 +2,8 @@ import React, { Component, Fragment } from "react";
 import { NavLink } from "react-router-dom";
 import Breadcum from "./../../../Breadcum/Breadcum";
 import "./../../../../styles/Project/Project.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 class CompleteProjects extends Component {
   render() {
@@ -22,21 +24,58 @@ class CompleteProjects extends Component {
                 </div>
 
                 <div className="row">
-                  <div className="col-12 project_data ">
-                    <span className="float-left">Tên dự án: </span>
-                    <span className="float-left"> Project Data - PG</span>
-                  </div>
-                  <div className="col-12 project_data ">
-                    <span className="float-left">Ngành hàng: </span>
-                    <span className="float-left"> Băng vệ sinh phụ nữ</span>
-                  </div>
-                  <div className="col-12 project_data ">
-                    <span className="float-left">Thời gian: </span>
-                    <span className="float-left"> 09/30/2019 - 2/2/2020</span>
-                  </div>
-                  <div className="col-12 project_data ">
-                    <span className="float-left">Mô tả: </span>
-                    <span className="float-left"> Không có</span>
+                  <div class="col-sm-12">
+                    <div class="recent-updates card">
+                      <div class="card-header">
+                        <h3 class="h4">Thông tin chung dự án</h3>
+                      </div>
+                      <div class="card-body no-padding">
+                        <div class="item d-flex justify-content-between">
+                          <div class="info d-flex">
+                            <div class="icon">Tên dự án: </div>
+                            <div class="title" style={{ fontWeight: "bold" }}>
+                              Project data -pg
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="item d-flex justify-content-between">
+                          <div class="info d-flex">
+                            <div class="icon">Ngành hàng </div>
+                            <div class="title" style={{ fontWeight: "bold" }}>
+                              Băng vệ sinh phụ nữ
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="item d-flex justify-content-between">
+                          <div class="info d-flex">
+                            <div class="icon">Ngày bắt đầu: </div>
+                            <div class="title" style={{ fontWeight: "bold" }}>
+                              09-30-2019
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="item d-flex justify-content-between">
+                          <div class="info d-flex">
+                            <div class="icon">Ngày kết thúc: </div>
+                            <div class="title" style={{ fontWeight: "bold" }}>
+                              02-02-2020
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="item d-flex justify-content-between">
+                          <div class="info d-flex">
+                            <div class="icon">Mô tả: </div>
+                            <div class="title" style={{ fontWeight: "bold" }}>
+                              Không có
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -67,15 +106,7 @@ class CompleteProjects extends Component {
                     </select>
                   </div>
                   <div className="col-3">
-                    <input type="month" name="bdaytime" />
-                    {/* <div class="form-group">
-                <div class="input-group date" id="datetimepicker1">
-                  <input type="text" class="form-control" />
-                  <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar" />
-                  </span>
-                </div>
-              </div> */}
+                    <DatePicker placeholderText="Chọn ngày"></DatePicker>
                   </div>
                 </div>
 
@@ -156,148 +187,6 @@ class CompleteProjects extends Component {
                                 </button>
                               </td>
                             </tr>
-                            {/* <tr>
-                              <th scope="row">1</th>
-                              <td>Supermarket</td>
-                              <td>BigC</td>
-                              <td>BIG-C MIỀN AN LẠC</td>
-                              <td>2</td>
-                              <td>29/09/2019</td>
-                              <td>
-                                <div className="btn-group">
-                                  <img
-                                    src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"
-                                    alt="Avatar"
-                                    className="avatar"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                    id="dropdownMenu2"
-                                  />
-                                  <div
-                                    className="dropdown-menu"
-                                    aria-labelledby="dropdownMenu2"
-                                  >
-                                    <NavLink
-                                      className="dropdown-item btn btn-success"
-                                      to="/human/profile"
-                                    >
-                                      <i
-                                        className="fa fa-info"
-                                        aria-hidden="true"
-                                        style={{ marginRight: "5px" }}
-                                      />
-                                      Thông tin
-                                    </NavLink>
-                                  </div>
-                                </div>
-                                <div className="btn-group">
-                                  <img
-                                    src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"
-                                    alt="Avatar"
-                                    className="avatar"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                    id="dropdownMenu3"
-                                  />
-                                  <div
-                                    className="dropdown-menu"
-                                    aria-labelledby="dropdownMenu3"
-                                  >
-                                    <NavLink
-                                      className="dropdown-item btn btn-success"
-                                      to="/human/profile"
-                                    >
-                                      <i
-                                        className="fa fa-info"
-                                        aria-hidden="true"
-                                        style={{ marginRight: "5px" }}
-                                      />
-                                      Thông tin
-                                    </NavLink>
-                                  </div>
-                                </div>
-                                <div className="btn-group">
-                                  <img
-                                    src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"
-                                    alt="Avatar"
-                                    className="avatar"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                    id="dropdownMenu4"
-                                  />
-                                  <div
-                                    className="dropdown-menu"
-                                    aria-labelledby="dropdownMenu4"
-                                  >
-                                    <NavLink
-                                      className="dropdown-item btn btn-success"
-                                      to="/human/profile"
-                                    >
-                                      <i
-                                        className="fa fa-info"
-                                        aria-hidden="true"
-                                        style={{ marginRight: "5px" }}
-                                      />
-                                      Thông tin
-                                    </NavLink>
-                                  </div>
-                                </div>
-                              </td>
-                              <td />
-                              <td>BigC</td>
-                              <td>
-                                <button className="btn btn-info">
-                                  Download
-                                </button>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">3</th>
-                              <td>Supermarket</td>
-                              <td>BigC</td>
-                              <td>BIG-C MIỀN ĐÔNG</td>
-                              <td>1</td>
-                              <td>29/09/2019</td>
-                              <td>
-                                <div className="btn-group">
-                                  <img
-                                    src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"
-                                    alt="Avatar"
-                                    className="avatar"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                    id="dropdownMenu1"
-                                  />
-                                  <div
-                                    className="dropdown-menu"
-                                    aria-labelledby="dropdownMenu1"
-                                  >
-                                    <NavLink
-                                      className="dropdown-item btn btn-success"
-                                      to="/human/profile"
-                                    >
-                                      <i
-                                        className="fa fa-info"
-                                        aria-hidden="true"
-                                        style={{ marginRight: "5px" }}
-                                      />
-                                      Thông tin
-                                    </NavLink>
-                                  </div>
-                                </div>
-                              </td>
-                              <td />
-                              <td>BigC</td>
-                              <td>
-                                <button className="btn btn-info">
-                                  Download
-                                </button>
-                              </td>
-                            </tr> */}
                           </tbody>
                         </table>
                       </div>

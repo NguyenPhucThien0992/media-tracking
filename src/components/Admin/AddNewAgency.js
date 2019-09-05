@@ -101,7 +101,7 @@ class AddNewAgency extends Component {
                     Mật khẩu
                   </label>
                   <div className="col-sm-7">
-                    <input type="text" className="form-control" />
+                    <input type="password" className="form-control" />
                   </div>
                   <div class="line" />
                   {/* Họ tên người đại diện */}

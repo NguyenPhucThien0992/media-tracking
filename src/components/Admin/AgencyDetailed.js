@@ -125,6 +125,28 @@ class AgencyDetailed extends Component {
                   <div className="col-md-4 left-title">Loại tài khoản:</div>
                   <div className="col-md-8 right-title">Cơ bản</div>
                 </div>
+                {/* Tình trạng */}
+                <div className="row">
+                  <div className="col-md-4 left-title">Tình trạng:</div>
+                  <div className="col-md-8 right-title">Đang hoạt động</div>
+                </div>
+                {/* Tổng tài khoản */}
+                <div className="row">
+                  <div className="col-md-4 left-title">Tổng tài khoản:</div>
+                  <div className="col-md-8 right-title">100</div>
+                </div>
+                {/* Tổng tài khoản đang dùng */}
+                <div className="row">
+                  <div className="col-md-4 left-title">Tổng tài đang dùng:</div>
+                  <div className="col-md-8 right-title">30</div>
+                </div>
+                {/* tổng tài khoản còn lại */}
+                <div className="row">
+                  <div className="col-md-4 left-title">
+                    Tổng tài khoản còn lại:
+                  </div>
+                  <div className="col-md-8 right-title">70</div>
+                </div>
               </div>
 
               <div className="col-md-3 offset-9">

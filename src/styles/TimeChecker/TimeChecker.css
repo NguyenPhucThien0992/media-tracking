@@ -173,6 +173,12 @@ tbody tr td.result-free {
   opacity: 0.5;
 }
 
+tbody tr td.result-allow-off {
+  color: blue;
+  font-size: 16px;
+  font-weight: bold
+}
+
 .done-status {
   margin-right: 10px;
   font-weight: 800;
@@ -188,7 +194,7 @@ tbody tr td.result-free {
 .forgot-out-status {
   margin-right: 10px;
   font-weight: 800;
-  color: red;
+  color: yellow;
 }
 
 .late-in-status {
@@ -201,4 +207,23 @@ tbody tr td.result-free {
   margin-right: 10px;
   font-weight: 800;
   color: red
+}
+
+.waiting-status {
+  margin-right: 10px;
+  font-weight: 800;
+  color: grey;
+}
+
+.off-allow-status {
+  margin-right: 10px;
+  font-weight: 800;
+  color: blue;
+}
+
+.wait-for-work {
+  width: 20px;
+  height: 20px;
+  background-color: grey;
+  cursor: none;
 }

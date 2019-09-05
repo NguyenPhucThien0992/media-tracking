@@ -139,19 +139,39 @@ class Admin extends Component {
                         Tạm ngừng hoạt động
                       </td>
                       <td>
-                        <NavLink
-                          to="/admin/add-new-agency"
-                          className="btn btn-primary"
-                        >
-                          Cập nhật
-                        </NavLink>
-                        <button
-                          className="btn btn-danger"
-                          data-toggle="modal"
-                          data-target="#deleteAgency2"
-                        >
-                          Xóa
-                        </button>
+                        <div className="dropdown-area">
+                          <div className="dropdown">
+                            <button
+                              className="btn btn-secondary dropdown-toggle"
+                              type="button"
+                              id="dropdownMenuButton"
+                              data-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false"
+                            >
+                              Hành động
+                            </button>
+
+                            <div
+                              className="dropdown-menu"
+                              aria-labelledby="dropdownMenuButton"
+                            >
+                              <NavLink
+                                className="btn btn-warning dropdown-item"
+                                to="/admin/agency/details"
+                              >
+                                Chi tiết
+                              </NavLink>
+                              <button
+                                className="btn btn-danger dropdown-item"
+                                data-toggle="modal"
+                                data-target="#deleteAgency2"
+                              >
+                                Xóa
+                              </button>
+                            </div>
+                          </div>
+                        </div>
                         {/* Modal xóa agency */}
                         <div
                           className="modal fade"
@@ -216,19 +236,39 @@ class Admin extends Component {
                         Đang hoạt động
                       </td>
                       <td>
-                        <NavLink
-                          to="/admin/add-new-agency"
-                          className="btn btn-primary"
-                        >
-                          Cập nhật
-                        </NavLink>
-                        <button
-                          className="btn btn-danger"
-                          data-toggle="modal"
-                          data-target="#deleteAgency3"
-                        >
-                          Xóa
-                        </button>
+                        <div className="dropdown-area">
+                          <div className="dropdown">
+                            <button
+                              className="btn btn-secondary dropdown-toggle"
+                              type="button"
+                              id="dropdownMenuButton"
+                              data-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false"
+                            >
+                              Hành động
+                            </button>
+
+                            <div
+                              className="dropdown-menu"
+                              aria-labelledby="dropdownMenuButton"
+                            >
+                              <NavLink
+                                className="btn btn-warning dropdown-item"
+                                to="/admin/agency/details"
+                              >
+                                Chi tiết
+                              </NavLink>
+                              <button
+                                className="btn btn-danger dropdown-item"
+                                data-toggle="modal"
+                                data-target="#deleteAgency3"
+                              >
+                                Xóa
+                              </button>
+                            </div>
+                          </div>
+                        </div>
                         {/* Modal xóa agency */}
                         <div
                           className="modal fade"

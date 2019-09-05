@@ -13,6 +13,7 @@ import Template from "./components/Project/Template/Template";
 import Human from "./components/Human/Human";
 import CreateNewEmployee from "./components/Human/CreateNewEmployee";
 import CheckerTable from "./components/TimeChecker/CheckerTable/CheckerTable";
+import CheckerTable1 from "./components/TimeChecker/CheckerTable/CheckerTable1";
 import OnWorking from "./components/TimeChecker/OnWorking/OnWorking";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import DayOff from "./components/DayOff/DayOff";
@@ -103,6 +104,7 @@ class App extends Component {
                   component={ProfileEmployee}
                 />
                 <Route path="/checker-table" component={CheckerTable} />
+                <Route path="/checker-table1" component={CheckerTable1} />
                 <Route path="/on-working" component={OnWorking} />
                 <Route path="/day-off" component={DayOff} />
                 <Route path="/admin" component={Admin} exact />
