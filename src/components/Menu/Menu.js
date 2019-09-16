@@ -55,6 +55,7 @@ class Menu extends Component {
               {/* <li>
                 <NavLink to="/create-project">Tạo dự án</NavLink>
               </li> */}
+
               <li>
                 <NavLink to="/all-project">Tổng dự án</NavLink>
               </li>
@@ -106,7 +107,7 @@ class Menu extends Component {
           </li>
           <li>
             <a href="#SystemAdmin" data-toggle="collapse" aria-expanded="false">
-              <i class="fa fa-snowflake-o" aria-hidden="true" />
+              <i className="fa fa-snowflake-o" aria-hidden="true" />
               Admin
             </a>
             <ul id="SystemAdmin" className="collapse list-unstyled ">

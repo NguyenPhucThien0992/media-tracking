@@ -3,8 +3,27 @@ import "./../../styles/Human/Human.css";
 import Breadcum from "./../Breadcum/Breadcum";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { signUp } from "./../../store/actions/authAction";
 class CreateNewEmployee extends Component {
+  state = {
+    phoneNumber: "",
+    fullName: "",
+    email: ""
+  };
+  handleChange = e => {
+    this.setState({ [e.target.id]: e.target.value });
+  };
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.signUp(this.state);
+  };
   render() {
+    const { auth } = this.props;
+    if (auth.uid) {
+      return <Redirect to="/"></Redirect>;
+    }
     return (
       <Fragment>
         <Breadcum Menu="Nhân sư" SubMenu="Chi tiết nhân viên" />
@@ -15,7 +34,7 @@ class CreateNewEmployee extends Component {
             </div>
 
             <div className="card-body">
-              <form className="form-horizontal">
+              <form className="form-horizontal" onSubmit={this.handleSubmit}>
                 <div className="form-group row">
                   {/* Họ tên */}
                   <label className="col-sm-3 form-control-label">
@@ -23,7 +42,9 @@ class CreateNewEmployee extends Component {
                   </label>
                   <div className="col-sm-9">
                     <input
+                      onChange={this.handleChange}
                       type="text"
+                      id="fullName"
                       className="form-control"
                       placeholder="Vui lòng nhập họ và tên"
                     />
@@ -57,7 +78,9 @@ class CreateNewEmployee extends Component {
                   </label>
                   <div className="col-sm-9">
                     <input
-                      type="number"
+                      onChange={this.handleChange}
+                      type="tel"
+                      id="phoneNumber"
                       className="form-control"
                       placeholder="Vui lòng nhập số điện thoại"
                     />
@@ -78,6 +101,8 @@ class CreateNewEmployee extends Component {
                   <label className="col-sm-3 form-control-label">Email:</label>
                   <div className="col-sm-9">
                     <input
+                      onChange={this.handleChange}
+                      id="email"
                       type="email"
                       className="form-control"
                       placeholder="Vui lòng nhập địa chỉ email"
@@ -304,4 +329,17 @@ class CreateNewEmployee extends Component {
   }
 }
 
-export default CreateNewEmployee;
+const mapState = state => {
+  return {
+    auth: state.firebase.auth
+  };
+};
+const mapDispatch = dispatch => {
+  return {
+    signUp: newUSer => dispatch(signUp(newUSer))
+  };
+};
+export default connect(
+  mapState,
+  mapDispatch
+)(CreateNewEmployee);

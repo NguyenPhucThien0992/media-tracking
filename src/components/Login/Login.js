@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { NavLink } from "react-router-dom";
-
+import { connect } from "react-redux";
+import { signUp } from "./../../store/actions/authAction";
 class Login extends Component {
   render() {
     return (
@@ -30,10 +31,10 @@ class Login extends Component {
                         <div className="form-group">
                           <input
                             id="login-username"
-                            type="text"
-                            name="loginUsername"
+                            type="tel"
+                            name="loginPhone"
                             required
-                            data-msg="Please enter your username"
+                            data-msg="Vui lòng nhập số điện thoại"
                             className="input-material"
                           />
                           <label
@@ -52,6 +53,7 @@ class Login extends Component {
                           Đăng nhập
                         </NavLink>
                       </form>
+                      <button onClick={this.props.signup}>sddas</button>
                       <a href="adaasd" className="forgot-pass">
                         Quên mật khẩu?
                       </a>
@@ -71,4 +73,13 @@ class Login extends Component {
     );
   }
 }
-export default Login;
+
+const mapDispatch = dispatch => {
+  return {
+    signup: () => dispatch(signUp)
+  };
+};
+export default connect(
+  null,
+  mapDispatch
+)(Login);

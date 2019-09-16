@@ -17,7 +17,7 @@ import CheckerTable1 from "./components/TimeChecker/CheckerTable/CheckerTable1";
 import OnWorking from "./components/TimeChecker/OnWorking/OnWorking";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import DayOff from "./components/DayOff/DayOff";
-import routes from "./../src/routes/index";
+
 import Header from "./components/Menu/Header";
 import Login from "./components/Login/Login";
 import Otp from "./components/Login/Otp";
@@ -118,7 +118,7 @@ class App extends Component {
             </div>
           </div>
         </Switch>
-        <div className="row">{this.showContentMenus(routes)}</div>
+        {/* <div className="row">{this.showContentMenus(routes)}</div> */}
       </Router>
     );
   }
