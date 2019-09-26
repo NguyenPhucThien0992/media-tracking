@@ -94,7 +94,7 @@ class App extends Component {
                   component={SearchEmployeeDetails}
                 ></Route>
                 <Route
-                  path="/human/details"
+                  path="/create-new-member"
                   exact
                   component={CreateNewEmployee}
                 />

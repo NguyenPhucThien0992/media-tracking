@@ -10,23 +10,28 @@ import "firebase/auth";
 
 class DashBoard extends Component {
   render() {
-    console.log("dashboard project", this.props.agency);
+    const { projects } = this.props;
+    console.log("projects", projects);
     return <HeaderStatistic />;
   }
 }
 
-const mapState = state => {
-  console.log("state", state);
+const mapState = (state, props) => {
+  console.log("all state dashboard", state);
+  console.log("all props dashboard", props);
   return {
-    agency: state.firestore.ordered.agency
+    projects: state.firestore.ordered.projects
   };
 };
 
 export default compose(
-  firestoreConnect(() => [
+  firestoreConnect([
     {
-      collection: "agency"
+      collection: "projects"
     }
   ]),
-  connect(mapState)
+  connect(
+    mapState,
+    null
+  )
 )(DashBoard);

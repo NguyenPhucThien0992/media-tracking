@@ -1,35 +1,43 @@
-import { SIGNUP_FAIL, SIGNUP_SUCCES } from "./../constant/const";
-import * as firebase from "firebase/app";
+import {
+  LOGIN_PHONE_SUCCESS,
+  LOGIN_PHONE_ERROR,
+  CONFIRM_OTP_FAIL,
+  CONFIRM_OTP_SUCCESS
+} from "./../constant/const";
+import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
-export const signUp = () => {
-  // return (dispatch, getState, { getFirebase }) => {
-
-  // };
-  var phoneNumber = "0785922827";
+export const loginPhone = phoneNumber => {
+  firebase.auth().languageCode = "it";
+  // firebase.auth().useDeviceLanguage();
   firebase.auth().settings.appVerificationDisabledForTesting = true;
-
-  var testVerificationCode = "123456";
-
-  // This will render a fake reCAPTCHA as appVerificationDisabledForTesting is true.
-  // This will resolve after rendering without app verification.
   var appVerifier = new firebase.auth.RecaptchaVerifier("recaptcha-container");
-  // signInWithPhoneNumber will call appVerifier.verify() which will resolve with a fake
-  // reCAPTCHA response.
-  firebase
-    .auth()
-    .signInWithPhoneNumber(phoneNumber, appVerifier)
-    .then(function(confirmationResult) {
-      // confirmationResult can resolve with the whitelisted testVerificationCode above.
+  return (dispatch, getState) => {
+    firebase
+      .auth()
+      .signInWithPhoneNumber(phoneNumber, appVerifier)
+      //  .then(ConfirmationResult => {
+      // firebase.auth().ConfirmationResult = ConfirmationResult;
+      // })
+      .then(res => {
+        dispatch({ type: LOGIN_PHONE_SUCCESS, res });
+      })
+      .catch(err => {
+        dispatch({ type: LOGIN_PHONE_ERROR, err });
+      });
+  };
+};
 
-      return confirmationResult.confirm(testVerificationCode);
-    })
-    .then(function(user) {
-      console.log("user", user);
-    })
-    .catch(function(error) {
-      // Error; SMS not sent
-      // ...
-    });
+export const confirmOtp = (confirmationResult, otp) => {
+  return (dispatch, getState) => {
+    confirmationResult
+      .confirm(otp)
+      .then(res => {
+        dispatch({ type: CONFIRM_OTP_SUCCESS, res });
+      })
+      .catch(err => {
+        dispatch({ type: CONFIRM_OTP_FAIL, err });
+      });
+  };
 };

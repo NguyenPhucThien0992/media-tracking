@@ -5,7 +5,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { signUp } from "./../../store/actions/authAction";
 class CreateNewEmployee extends Component {
   state = {
     phoneNumber: "",
@@ -335,9 +334,7 @@ const mapState = state => {
   };
 };
 const mapDispatch = dispatch => {
-  return {
-    signUp: newUSer => dispatch(signUp(newUSer))
-  };
+  return {};
 };
 export default connect(
   mapState,

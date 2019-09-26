@@ -1,7 +1,77 @@
 import React, { Component, Fragment } from "react";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { confirmOtp } from "./../../store/actions/authAction";
+
+import { CONFIRM_OTP_SUCCESS_MESSAGE } from "./../../store/constant/const";
+
 class Otp extends Component {
+  state = {
+    otpCode: ""
+  };
+  onHandleChange = e => {
+    this.setState({
+      [e.target.id]: e.target.value
+    });
+  };
+  onConfirmOtp = () => {
+    const { confirmOtp } = this.props;
+    let otpCode = this.state.otpCode;
+    let confirmationResult = this.props.authReducer.confirmationResult;
+
+    confirmOtp(confirmationResult, otpCode);
+  };
+
   render() {
+    const { authReducer } = this.props;
+    const confirmOtp = authReducer.confirmOtp;
+    let isNewUser = null;
+
+    if (typeof authReducer !== "undefined") {
+      if (
+        typeof authReducer.authenticationInfor !== "undefined" &&
+        authReducer.authenticationInfor !== null
+      ) {
+        if (
+          typeof authReducer.authenticationInfor.additionalUserInfo !==
+            "undefined" &&
+          authReducer.authenticationInfor.additionalUserInfo !== null
+        ) {
+          isNewUser =
+            authReducer.authenticationInfor.additionalUserInfo.isNewUser;
+        }
+      } else {
+        //
+      }
+    } else {
+      //
+    }
+
+    if (confirmOtp && confirmOtp === CONFIRM_OTP_SUCCESS_MESSAGE) {
+      console.log("isNewUser", isNewUser);
+      if (isNewUser === true) {
+        console.log("t dang o day");
+        this.props.history.push("/create-new-member");
+        // return (
+        //   <Redirect
+        //     to={{
+        //       pathname: "/log"
+        //     }}
+        //   ></Redirect>
+        // );
+      } else if (isNewUser === false) {
+        console.log("t nhay vo true dc");
+        this.props.history.push("/");
+        // return (
+        //   <Redirect
+        //     to={{
+        //       pathname: "/"
+        //     }}
+        //   ></Redirect>
+        // );
+      }
+    }
+
     return (
       <Fragment>
         <div className="page login-page">
@@ -28,12 +98,12 @@ class Otp extends Component {
                       <form method="post" className="form-validate">
                         <div className="form-group">
                           <input
-                            id="login-username"
+                            id="otpCode"
                             type="text"
                             name="loginUsername"
                             required
-                            data-msg="Please enter your username"
                             className="input-material"
+                            onChange={this.onHandleChange}
                           />
                           <label
                             htmlFor="login-username"
@@ -47,6 +117,8 @@ class Otp extends Component {
                           Gửi
                         </NavLink>
                       </form>
+
+                      <button onClick={this.onConfirmOtp}>Gui</button>
                     </div>
                   </div>
                 </div>
@@ -58,4 +130,19 @@ class Otp extends Component {
     );
   }
 }
-export default Otp;
+const mapState = state => {
+  return {
+    authReducer: state.authReducer
+  };
+};
+const mapDispatch = (dispatch, props) => {
+  return {
+    confirmOtp: (confirmationResult, otp) => {
+      dispatch(confirmOtp(confirmationResult, otp));
+    }
+  };
+};
+export default connect(
+  mapState,
+  mapDispatch
+)(Otp);

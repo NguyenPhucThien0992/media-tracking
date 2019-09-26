@@ -1,9 +1,18 @@
 import React, { Component, Fragment } from "react";
 import { NavLink } from "react-router-dom";
 import Breadcum from "./../../Breadcum/Breadcum";
-
+import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 class AllProjects extends Component {
   render() {
+    const { projects } = this.props;
+    console.log(projects);
+    let allProject =
+      projects &&
+      projects.map(project => {
+        return <div>{project.status === "1"}</div>;
+      });
     return (
       <Fragment>
         <Breadcum Menu="Dự án" SubMenu="Tổng dự án" />
@@ -135,7 +144,8 @@ class AllProjects extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    {allProject}
+                    {/* <tr>
                       <th scope="row">1</th>
                       <td>PJ001</td>
                       <td>Quảng cáo bột giặt omo</td>
@@ -185,7 +195,7 @@ class AllProjects extends Component {
                           </div>
                         </div>
                       </td>
-                    </tr>
+                    </tr> */}
                   </tbody>
                 </table>
               </div>
@@ -598,5 +608,20 @@ class AllProjects extends Component {
     );
   }
 }
+const mapState = state => {
+  return {
+    projects: state.firestore.ordered.projects
+  };
+};
 
-export default AllProjects;
+export default compose(
+  firestoreConnect([
+    {
+      collection: "projects"
+    }
+  ]),
+  connect(
+    mapState,
+    null
+  )
+)(AllProjects);

@@ -1,9 +1,41 @@
 import React, { Component, Fragment } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { signUp } from "./../../store/actions/authAction";
+import { loginPhone } from "./../../store/actions/authAction";
+import { Redirect } from "react-router-dom";
+import { LOGIN_PHONE_SUCCESS_MESSAGE } from "./../../store/constant/const";
 class Login extends Component {
+  state = {
+    phoneNumber: ""
+  };
+  handleChange = e => {
+    this.setState({
+      [e.target.id]: e.target.value
+    });
+  };
+
+  onLoginPhone = () => {
+    const { loginPhone } = this.props;
+    let rawPhoneNumber = this.state.phoneNumber;
+    let tmpPhoneNumber = rawPhoneNumber.substring(1, 10);
+    let phoneNumber = "+84".concat(tmpPhoneNumber);
+    loginPhone(phoneNumber);
+  };
   render() {
+    const { authReducer } = this.props;
+
+    if (
+      authReducer &&
+      authReducer.loginMessage === LOGIN_PHONE_SUCCESS_MESSAGE
+    ) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/login/otp"
+          }}
+        ></Redirect>
+      );
+    }
     return (
       <Fragment>
         <div className="page login-page">
@@ -23,19 +55,20 @@ class Login extends Component {
                     </div>
                   </div>
                 </div>
-
+                <div id="recaptcha-container"></div>
                 <div className="col-lg-6 bg-white">
                   <div className="form d-flex align-items-center">
                     <div className="content">
                       <form method="post" className="form-validate">
                         <div className="form-group">
                           <input
-                            id="login-username"
+                            id="phoneNumber"
                             type="tel"
-                            name="loginPhone"
+                            name="phoneNumber"
                             required
-                            data-msg="Vui lòng nhập số điện thoại"
                             className="input-material"
+                            placeholder="Vui lòng nhập số điện thoại"
+                            onChange={this.handleChange}
                           />
                           <label
                             htmlFor="login-username"
@@ -45,15 +78,15 @@ class Login extends Component {
                           </label>
                         </div>
                         <div className="form-group"></div>
-                        <NavLink
+                        <button
                           id="login"
-                          to="/login/otp"
                           className="btn btn-primary"
+                          onClick={this.onLoginPhone}
                         >
                           Đăng nhập
-                        </NavLink>
+                        </button>
                       </form>
-                      <button onClick={this.props.signup}>sddas</button>
+                      <button onClick={this.onLoginPhone}>Dang nhap</button>
                       <a href="adaasd" className="forgot-pass">
                         Quên mật khẩu?
                       </a>
@@ -74,12 +107,20 @@ class Login extends Component {
   }
 }
 
-const mapDispatch = dispatch => {
+const mapState = state => {
   return {
-    signup: () => dispatch(signUp)
+    authReducer: state.authReducer,
+    firebaseAuth: state.firebase.auth
+  };
+};
+const mapDispatch = (dispatch, props) => {
+  return {
+    loginPhone: message => {
+      dispatch(loginPhone(message));
+    }
   };
 };
 export default connect(
-  null,
+  mapState,
   mapDispatch
 )(Login);
