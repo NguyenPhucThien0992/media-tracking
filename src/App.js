@@ -56,7 +56,13 @@ class App extends Component {
             <Header />
             <div className="page-content d-flex align-items-stretch">
               <Menu />
+
               <div className="content-inner">
+                <Route
+                  path="/create-new-member"
+                  component={CreateNewEmployee}
+                  exact
+                />
                 <Route path="/" component={DashBoard} exact />
                 <Route
                   path="/overview-employee"
@@ -93,11 +99,7 @@ class App extends Component {
                   exact
                   component={SearchEmployeeDetails}
                 ></Route>
-                <Route
-                  path="/create-new-member"
-                  exact
-                  component={CreateNewEmployee}
-                />
+
                 <Route
                   path="/human/profile"
                   exact

@@ -2,8 +2,24 @@ import React, { Component, Fragment } from "react";
 import "./../../styles/Human/Human.css";
 import { NavLink } from "react-router-dom";
 import Breadcum from "./../Breadcum/Breadcum";
+import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
+import "firebase/auth";
+import "firebase/firestore";
+import "firebase/storage";
+import firebase from "firebase/app";
+import banks from "./../../common/banks/banks";
+import provinces from "./../../common/province/provinces";
+
 class ProfileEmployee extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+    const { user, phoneNumber, bankName, province, registerWork } = this.props;
+
     return (
       <Fragment>
         <Breadcum Menu="Nhân sự" SubMenu="Nhân viên" />
@@ -23,7 +39,11 @@ class ProfileEmployee extends Component {
                   </div>
                   <div class="col-md-6">
                     <div class="profile-head">
-                      <h5>Nguyễn Phúc Thiện</h5>
+                      <h5>
+                        {user && user !== undefined
+                          ? user.firstName.concat(" ", user.lastName)
+                          : null}
+                      </h5>
                       <h6>Director</h6>
                       {/* <p class="proile-rating">
                   RANKINGS : <span>8/10</span>
@@ -111,25 +131,7 @@ class ProfileEmployee extends Component {
                 </div>
                 <div class="row">
                   <div class="col-md-4">
-                    <div class="profile-work">
-                      {/* <p>WORK LINK</p>
-                <a href="ad">Website Link</a>
-                <br />
-                <a href="asd">Bootsnipp Profile</a>
-                <br />
-                <a href="ads">Bootply Profile</a>
-                <p>SKILLS</p>
-                <a href="ad">Web Designer</a>
-                <br />
-                <a href="asd">Web Developer</a>
-                <br />
-                <a href="asd">WordPress</a>
-                <br />
-                <a href="asd">WooCommerce</a>
-                <br />
-                <a href="ad">PHP, .Net</a>
-                <br /> */}
-                    </div>
+                    <div class="profile-work"></div>
                   </div>
                   <div class="col-md-8">
                     <div class="tab-content profile-tab" id="myTabContent">
@@ -144,13 +146,21 @@ class ProfileEmployee extends Component {
                             <label>Họ (Last name):</label>
                           </div>
                           <div class="col-md-3">
-                            <p>Nguyễn</p>
+                            <p>
+                              {user && user !== undefined
+                                ? user.firstName
+                                : null}
+                            </p>
                           </div>
                           <div class="col-md-3">
                             <label>Tên (First name):</label>
                           </div>
                           <div class="col-md-3">
-                            <p>Phúc Thiện</p>
+                            <p>
+                              {user && user !== undefined
+                                ? user.lastName
+                                : null}
+                            </p>
                           </div>
                         </div>
                         <div class="row">
@@ -158,7 +168,7 @@ class ProfileEmployee extends Component {
                             <label>Ngày sinh:</label>
                           </div>
                           <div class="col-md-6">
-                            <p>29 - 09 - 1992</p>
+                            <p>Not available</p>
                           </div>
                         </div>
 
@@ -167,7 +177,7 @@ class ProfileEmployee extends Component {
                             <label>Số điện thoại</label>
                           </div>
                           <div class="col-md-6">
-                            <p>0785922827</p>
+                            <p>{phoneNumber}</p>
                           </div>
                         </div>
                         <div class="row">
@@ -175,7 +185,9 @@ class ProfileEmployee extends Component {
                             <label>Giới tính</label>
                           </div>
                           <div class="col-md-6">
-                            <p>Nam</p>
+                            <p>
+                              {user && user !== undefined ? user.gender : null}
+                            </p>
                           </div>
                         </div>
 
@@ -184,7 +196,9 @@ class ProfileEmployee extends Component {
                             <label>Email:</label>
                           </div>
                           <div class="col-md-6">
-                            <p>nguyenphucthien0992@gmail.com</p>
+                            <p>
+                              {user && user !== undefined ? user.email : null}
+                            </p>
                           </div>
                         </div>
                         <div class="row">
@@ -192,7 +206,9 @@ class ProfileEmployee extends Component {
                             <label>Địa chỉ:</label>
                           </div>
                           <div class="col-md-6">
-                            <p>Bình Chánh, Tp Hồ Chí Minh</p>
+                            <p>
+                              {user && user !== undefined ? user.address : null}
+                            </p>
                           </div>
                         </div>
                         <div class="row">
@@ -200,7 +216,11 @@ class ProfileEmployee extends Component {
                             <label>Chứng minh nhân dân:</label>
                           </div>
                           <div class="col-md-6">
-                            <p>036489423</p>
+                            <p>
+                              {user && user !== undefined
+                                ? user.identityNumber
+                                : null}
+                            </p>
                           </div>
                         </div>
 
@@ -209,7 +229,11 @@ class ProfileEmployee extends Component {
                             <label>Chiều cao (cm):</label>
                           </div>
                           <div class="col-md-6">
-                            <p>173</p>
+                            <p>
+                              {user && user !== undefined
+                                ? user.heightParam
+                                : null}
+                            </p>
                           </div>
                         </div>
 
@@ -218,7 +242,11 @@ class ProfileEmployee extends Component {
                             <label>Cân nặng(kg):</label>
                           </div>
                           <div class="col-md-6">
-                            <p>85</p>
+                            <p>
+                              {user && user !== undefined
+                                ? user.weightParam
+                                : null}
+                            </p>
                           </div>
                         </div>
 
@@ -227,7 +255,11 @@ class ProfileEmployee extends Component {
                             <label>Mã số thuế:</label>
                           </div>
                           <div class="col-md-6">
-                            <p>036489423</p>
+                            <p>
+                              {user && user !== undefined
+                                ? user.taxNumber
+                                : null}
+                            </p>
                           </div>
                         </div>
 
@@ -236,7 +268,11 @@ class ProfileEmployee extends Component {
                             <label>Số tài khoản ngân hàng:</label>
                           </div>
                           <div class="col-md-6">
-                            <p>036489423</p>
+                            <p>
+                              {user && user !== undefined
+                                ? user.bankNumber
+                                : null}
+                            </p>
                           </div>
                         </div>
                         <div class="row">
@@ -244,7 +280,11 @@ class ProfileEmployee extends Component {
                             <label>Tên ngân hàng:</label>
                           </div>
                           <div class="col-md-6">
-                            <p>Vietcombank</p>
+                            <p>
+                              {bankName && bankName !== undefined
+                                ? bankName
+                                : null}
+                            </p>
                           </div>
                         </div>
 
@@ -253,7 +293,11 @@ class ProfileEmployee extends Component {
                             <label>Chi nhánh ngân hàng</label>
                           </div>
                           <div class="col-md-6">
-                            <p>Hồ Chí Minh</p>
+                            <p>
+                              {user && user !== undefined
+                                ? user.bankBranch
+                                : null}
+                            </p>
                           </div>
                         </div>
 
@@ -263,7 +307,9 @@ class ProfileEmployee extends Component {
                           </div>
                           <div class="col-md-6">
                             <span class="badge badge-primary">
-                              Thành phố Hồ Chí Minh
+                              {registerWork && registerWork !== undefined
+                                ? registerWork
+                                : null}
                             </span>
                           </div>
                         </div>
@@ -302,5 +348,85 @@ class ProfileEmployee extends Component {
     );
   }
 }
+const mapState = state => {
+  var allUsers, userUid, user, phoneNumber, bankName, province, registerWork;
+  if (
+    state.firestore.ordered.testConnectDb &&
+    state.firestore.ordered.testConnectDb !== null
+  ) {
+    allUsers = state.firestore.ordered.testConnectDb;
+  }
+  if (state.firebase.auth && state.firebase.auth.uid !== null) {
+    userUid = state.firebase.auth.uid;
+  }
 
-export default ProfileEmployee;
+  if (allUsers && allUsers != null) {
+    if (userUid && userUid !== null) {
+      allUsers.forEach(item => {
+        if (item.uid === userUid) {
+          user = item;
+        }
+      });
+    }
+  }
+
+  if (
+    state.firebase.auth.phoneNumber &&
+    state.firebase.auth.phoneNumber !== null
+  ) {
+    phoneNumber = state.firebase.auth.phoneNumber;
+    phoneNumber = phoneNumber.substring(3, 12);
+    phoneNumber = "0".concat(phoneNumber);
+  } else {
+    phoneNumber = null;
+  }
+
+  if (user && user !== null) {
+    banks.forEach(item => {
+      if (item.key === user.bankName) {
+        return (bankName = item.text);
+      }
+    });
+  } else {
+    bankName = null;
+  }
+  if (user && user !== null) {
+    provinces.forEach(item => {
+      if (item.key === user.provinceBank) {
+        return (province = item.text);
+      }
+    });
+  } else {
+    bankName = null;
+  }
+  if (user && user !== null) {
+    provinces.forEach(item => {
+      if (item.key === user.registerWork) {
+        return (registerWork = item.text);
+      }
+    });
+  } else {
+    registerWork = null;
+  }
+  return {
+    auth: state.firebase.auth,
+    authReducer: state.authReducer,
+    users: state.firestore.ordered.testConnectDb,
+    user: user,
+    phoneNumber: phoneNumber,
+    bankName: bankName,
+    province: province,
+    registerWork: registerWork
+  };
+};
+export default compose(
+  firestoreConnect([
+    {
+      collection: "testConnectDb"
+    }
+  ]),
+  connect(
+    mapState,
+    null
+  )
+)(ProfileEmployee);

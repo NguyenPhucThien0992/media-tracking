@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { confirmOtp } from "./../../store/actions/authAction";
 
@@ -48,27 +48,10 @@ class Otp extends Component {
     }
 
     if (confirmOtp && confirmOtp === CONFIRM_OTP_SUCCESS_MESSAGE) {
-      console.log("isNewUser", isNewUser);
-      if (isNewUser === true) {
-        console.log("t dang o day");
+      if (isNewUser === false) {
         this.props.history.push("/create-new-member");
-        // return (
-        //   <Redirect
-        //     to={{
-        //       pathname: "/log"
-        //     }}
-        //   ></Redirect>
-        // );
-      } else if (isNewUser === false) {
-        console.log("t nhay vo true dc");
+      } else if (isNewUser === true) {
         this.props.history.push("/");
-        // return (
-        //   <Redirect
-        //     to={{
-        //       pathname: "/"
-        //     }}
-        //   ></Redirect>
-        // );
       }
     }
 

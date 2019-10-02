@@ -1,8 +1,33 @@
 import React, { Component, Fragment } from "react";
 import { NavLink } from "react-router-dom";
-
+import { connect } from "react-redux";
+import { signout } from "./../../store/actions/authAction";
+import { SIGNOUT_SUCCESS_MESSAGE } from "./../../store/constant/const";
+import { Redirect } from "react-router-dom";
 class Header extends Component {
+  onSignout = () => {
+    const { signout, authReducer, auth } = this.props;
+    signout("sign out");
+    if (
+      authReducer.signoutMessage &&
+      authReducer.signoutMessage === SIGNOUT_SUCCESS_MESSAGE
+    ) {
+      console.log("sign out thanh cong");
+      return (
+        <Redirect
+          to={{
+            pathname: "/logout"
+          }}
+        ></Redirect>
+      );
+    } else {
+      console.log("signout that bai");
+    }
+  };
   render() {
+    console.log("all props of header", this.props);
+    console.log("all state of header", this.state);
+
     return (
       <Fragment>
         <header className="header">
@@ -161,10 +186,16 @@ class Header extends Component {
                   </li>
 
                   <li className="nav-item">
-                    <NavLink to="/logout" className="nav-link logout">
+                    <button
+                      onClick={this.onSignout}
+                      className="nav-link logout"
+                    >
+                      Đăng xuất
+                    </button>
+                    {/* <NavLink to="/logout" className="nav-link logout">
                       <span className="d-none d-sm-inline">Đăng xuất</span>
                       <i className="fa fa-sign-out" />
-                    </NavLink>
+                    </NavLink> */}
                   </li>
                 </ul>
               </div>
@@ -175,5 +206,23 @@ class Header extends Component {
     );
   }
 }
+const mapState = state => {
+  console.log("Header State", state);
+  return {
+    auth: state.firebase.auth,
+    authReducer: state.authReducer
+  };
+};
 
-export default Header;
+const mapDispatch = (dispatch, props) => {
+  return {
+    signout: message => {
+      dispatch(signout(message));
+    }
+  };
+};
+
+export default connect(
+  mapState,
+  mapDispatch
+)(Header);

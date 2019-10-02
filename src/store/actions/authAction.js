@@ -2,7 +2,10 @@ import {
   LOGIN_PHONE_SUCCESS,
   LOGIN_PHONE_ERROR,
   CONFIRM_OTP_FAIL,
-  CONFIRM_OTP_SUCCESS
+  CONFIRM_OTP_SUCCESS,
+  SIGNOUT_SUCCESS,
+  SIGNUP_FAIL,
+  SIGNOUT_FAIL
 } from "./../constant/const";
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -38,6 +41,18 @@ export const confirmOtp = (confirmationResult, otp) => {
       })
       .catch(err => {
         dispatch({ type: CONFIRM_OTP_FAIL, err });
+      });
+  };
+};
+
+export const signout = message => {
+  return (dispatch, getState) => {
+    firebase
+      .auth()
+      .signOut()
+      .then(res => dispatch({ type: SIGNOUT_SUCCESS, res }))
+      .catch(err => {
+        dispatch({ type: SIGNOUT_FAIL, err });
       });
   };
 };

@@ -1,15 +1,42 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-
+import { connect } from "react-redux";
+import "firebase/auth";
+import "firebase/firestore";
+import "firebase/storage";
+import firebase from "firebase/app";
 class Menu extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      menuAvatar: null
+    };
+  }
+
+  getAvatar = uid => {
+    const storage = firebase.storage().ref();
+    storage
+      .child(`users/${uid}/avatar.png`)
+      .getDownloadURL()
+      .then(url => {
+        this.setState({
+          menuAvatar: url
+        });
+      })
+      .catch(error => {});
+  };
   render() {
+    const { auth } = this.props;
+    if (auth && auth.uid !== null) {
+      this.getAvatar(auth.uid);
+    }
     return (
       <nav className="side-navbar">
         <div className="sidebar-header d-flex align-items-center">
           <div className="avatar">
             <NavLink to="/human/profile">
               <img
-                src="https://scontent.fsgn8-1.fna.fbcdn.net/v/t1.0-9/66202288_2413380262049068_281577970026414080_n.jpg?_nc_cat=102&_nc_oc=AQmT75QSKpCnsVXfzrP4f0GOyv0BVeBZIdLUpyjyhEIGsg0OxyfaKvThnIY9dy-0NZM&_nc_ht=scontent.fsgn8-1.fna&oh=7baf37a3748b14fba2e0084271a5e193&oe=5DEC2258"
+                src={this.state.menuAvatar}
                 alt="..."
                 className="img-fluid rounded-circle"
               />
@@ -121,5 +148,14 @@ class Menu extends Component {
     );
   }
 }
+const mapState = state => {
+  return {
+    auth: state.firebase.auth,
+    authReducer: state.authReducer
+  };
+};
 
-export default Menu;
+export default connect(
+  mapState,
+  null
+)(Menu);

@@ -4,14 +4,18 @@ import {
   CONFIRM_OTP_FAIL,
   CONFIRM_OTP_SUCCESS,
   LOGIN_PHONE_SUCCESS_MESSAGE,
-  CONFIRM_OTP_SUCCESS_MESSAGE
+  CONFIRM_OTP_SUCCESS_MESSAGE,
+  SIGNOUT_FAIL,
+  SIGNOUT_SUCCESS,
+  SIGNOUT_SUCCESS_MESSAGE
 } from "./../constant/const";
 
 const initState = {
   loginMessage: null,
   confirmationResult: null,
   confirmOtp: null,
-  authenticationInfor: null
+  authenticationInfor: null,
+  signoutMessage: null
 };
 const authReducer = (state = initState, action) => {
   switch (action.type) {
@@ -33,6 +37,15 @@ const authReducer = (state = initState, action) => {
     case CONFIRM_OTP_FAIL:
       console.log("confirmation otp failed");
       return { ...state, confirmOtp: "failed" };
+    case SIGNOUT_SUCCESS:
+      console.log("signout sucess");
+      return {
+        ...state,
+        signoutMessage: SIGNOUT_SUCCESS_MESSAGE
+      };
+    case SIGNOUT_FAIL:
+      console.log("signout fail");
+      return state;
     default:
       return state;
   }

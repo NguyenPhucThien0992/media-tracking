@@ -1,324 +1,543 @@
 import React, { Component, Fragment } from "react";
 import "./../../styles/Human/Human.css";
 import Breadcum from "./../Breadcum/Breadcum";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Redirect } from "react-router-dom";
+import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
+import TextInput from "./../../common/form/TextInput";
+import DateInput from "./../../common/form/DateInput";
+import SelectInput from "./../../common/form/SelectInput";
+import ImageUploadInput from "./../../common/form/ImageUploadInput";
+import {
+  createValidator,
+  composeValidators,
+  combineValidators,
+  isRequired,
+  hasLengthLessThan,
+  isNumeric,
+  hasLengthBetween
+} from "revalidate";
+import moment from "moment";
+import { Button } from "semantic-ui-react";
+import { createNewMember } from "./../../store/actions/humanAction";
+import banks from "./../../common/banks/banks";
+import provinces from "./../../common/province/provinces";
+import { CREATE_NEW_MEMBER_SUCCESS_MESSAGE } from "./../../store/constant/const";
+const isValidEmail = createValidator(
+  message => value => {
+    if (value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+      return message;
+    }
+  },
+  "Định dạng email không hợp lệ"
+);
+const validate = combineValidators({
+  firstName: isRequired({ message: "Vui lòng nhập tên" }),
+  lastName: isRequired({ message: "Vui lòng nhập họ và tên lót" }),
+  // dob: isRequired({ message: "Vui lòng nhập họ và tên" })
+  gender: isRequired({ message: "Vui lòng chọn giới tính" }),
+  email: composeValidators(
+    isRequired({ message: "Vui lòng nhập địa chỉ email" }),
+    isValidEmail
+  )(),
+  address: isRequired({ message: "Vui lòng nhập địa chỉ" }),
+  identityNumber: composeValidators(
+    isNumeric({ message: "Vui lòng chỉ nhập số" }),
+    isRequired({ message: "Vui lòng nhập số chứng minh nhân dân" }),
+    hasLengthBetween(9, 12)({
+      message:
+        "Vui lòng nhập số chứng minh nhân dân ít nhất 9 kí tự và nhiều nhất 12 kí tự"
+    })
+  )(),
+  // frontIdentityNumberImage: isRequired({ message: "Vui lòng nhập họ và tên" }),
+  // backIdentityNumberImage: isRequired({ message: "Vui lòng nhập họ và tên" }),
+  heightParam: isRequired({ message: "Vui lòng nhập chiều cao" }),
+  weightParam: isRequired({ message: "Vui lòng nhập cân nặng" }),
+  // avatarImage: isRequired({ message: "Vui lòng nhập họ và tên" }),
+  // fullBodyImage: isRequired({ message: "Vui lòng nhập họ và tên" }),
+  taxNumber: isRequired({ message: "Vui lòng nhập mã số thuế" }),
+  bankNumber: isRequired({ message: "Vui lòng nhập số tài khoản ngân hàng" })
+  // bankName: isRequired({ message: "Vui lòng nhập họ và tên" }),
+  // provineBank: isRequired({ message: "Vui lòng nhập họ và tên" }),
+  // bankBranch: isRequired({ message: "Vui lòng nhập họ và tên" }),
+  // registerWork: isRequired({ message: "Vui lòng nhập họ và tên" })
+});
+const genderOption = [
+  { key: "nam", text: "Nam", value: "Nam" },
+  { key: "nu", text: "Nữ", value: "Nữ" }
+];
+
+const renderImage = (imageState, imagePreviewUrl) => {
+  if (imageState !== null) {
+    return <img src={imagePreviewUrl} alt="" className="avatar_cmnd" />;
+  }
+};
+const renderImageName = imageName => {
+  if (imageName !== null) {
+    return <p>{imageName}</p>;
+  }
+};
+
 class CreateNewEmployee extends Component {
+  onFormSubmit = (newMember, e) => {
+    const auth = this.props.auth;
+    const {
+      frontIdentity,
+      backIdentity,
+      avatarImage,
+      fullBodyImage
+    } = this.state;
+
+    var Upload = {
+      frontIdentity: frontIdentity,
+      backIdentity: backIdentity,
+      avatarImage: avatarImage,
+      fullBodyImage: fullBodyImage
+    };
+    this.props.createNewMember(newMember, auth, Upload);
+  };
   state = {
-    phoneNumber: "",
-    fullName: "",
-    email: ""
+    frontIdentity: null,
+    frontIdentityUrl: null,
+    frontIdentityName: null,
+    backIdentity: null,
+    backIdentityUrl: null,
+    backIdentityName: null,
+    avatarImage: null,
+    avatarImageUrl: null,
+    avatarImageName: null,
+    fullBodyImage: null,
+    fullBodyImageUrl: null,
+    fullBodyImageName: null
   };
-  handleChange = e => {
-    this.setState({ [e.target.id]: e.target.value });
+
+  fileChange = e => {
+    let reader = new FileReader();
+    let file = e.target.files[0];
+    reader.onloadend = () => {
+      this.setState({
+        frontIdentityUrl: reader.result
+      });
+    };
+    reader.readAsDataURL(file);
+    this.setState({
+      [e.target.name]: e.target.files[0],
+      frontIdentityName: e.target.files[0].name
+    });
   };
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.signUp(this.state);
+
+  fileChangeBackIdentity = e => {
+    let reader = new FileReader();
+    let file = e.target.files[0];
+    reader.onloadend = () => {
+      this.setState({
+        backIdentityUrl: reader.result
+      });
+    };
+    reader.readAsDataURL(file);
+    this.setState({
+      [e.target.name]: e.target.files[0],
+      backIdentityName: e.target.files[0].name
+    });
   };
+
+  avatarChange = e => {
+    let reader = new FileReader();
+    let file = e.target.files[0];
+    reader.onloadend = () => {
+      this.setState({
+        avatarImageUrl: reader.result
+      });
+    };
+    reader.readAsDataURL(file);
+    this.setState({
+      [e.target.name]: e.target.files[0],
+      avatarImageName: e.target.files[0].name
+    });
+  };
+
+  fullBodyChange = e => {
+    let reader = new FileReader();
+    let file = e.target.files[0];
+    reader.onloadend = () => {
+      this.setState({
+        fullBodyImageUrl: reader.result
+      });
+    };
+    reader.readAsDataURL(file);
+    this.setState({
+      [e.target.name]: e.target.files[0],
+      fullBodyImageName: e.target.files[0].name
+    });
+  };
+
+  frontIdentityRef = React.createRef();
+  backIdentityRef = React.createRef();
+  avatarRef = React.createRef();
+  fullBodyRef = React.createRef();
   render() {
-    const { auth } = this.props;
-    if (auth.uid) {
-      return <Redirect to="/"></Redirect>;
+    const {
+      frontIdentity,
+      frontIdentityUrl,
+      frontIdentityName,
+      backIdentity,
+      backIdentityName,
+      backIdentityUrl,
+      avatarImage,
+      avatarImageUrl,
+      avatarImageName,
+      fullBodyImage,
+      fullBodyImageUrl,
+      fullBodyImageName
+    } = this.state;
+    const { humanReducer } = this.props;
+    // navigate to dashboard after complet signin
+    if (
+      humanReducer &&
+      humanReducer.create_new_member_success_message ===
+        CREATE_NEW_MEMBER_SUCCESS_MESSAGE
+    ) {
+      this.props.history.push("/");
     }
     return (
       <Fragment>
-        <Breadcum Menu="Nhân sư" SubMenu="Chi tiết nhân viên" />
+        <Breadcum Menu="Nhân sự" SubMenu="Chi tiết nhân viên" />
         <div className="col-lg-12">
           <div className="card">
             <div className="card-header d-flex align-items-center">
               <h3 className="h4">Đăng ký tài khoản</h3>
             </div>
-
             <div className="card-body">
-              <form className="form-horizontal" onSubmit={this.handleSubmit}>
+              <form
+                className="form-horizontal"
+                onSubmit={this.props.handleSubmit(this.onFormSubmit)}
+              >
+                {/*  Tên */}
                 <div className="form-group row">
-                  {/* Họ tên */}
                   <label className="col-sm-3 form-control-label">
                     Họ và tên:
                   </label>
-                  <div className="col-sm-9">
-                    <input
-                      onChange={this.handleChange}
-                      type="text"
-                      id="fullName"
-                      className="form-control"
-                      placeholder="Vui lòng nhập họ và tên"
-                    />
-                  </div>
+                  <Field
+                    name="firstName"
+                    type="text"
+                    classNameDiv="col-sm-9"
+                    component={TextInput}
+                    placeholder="Vui lòng nhập tên"
+                    className="form-control"
+                  ></Field>
                   <div class="line" />
-                  {/* Họ tên */}
+                </div>
+                {/* Họ  */}
+                <div className="form-group row">
+                  <label className="col-sm-3 form-control-label">
+                    Họ và tên lót:
+                  </label>
+                  <Field
+                    name="lastName"
+                    type="text"
+                    classNameDiv="col-sm-9"
+                    component={TextInput}
+                    placeholder="Vui lòng nhập họ và tên lót"
+                    className="form-control"
+                  ></Field>
+                  <div class="line" />
+                </div>
+                {/* Ngày tháng năm sinh */}
+                <div className="form-group row">
                   <label className="col-sm-3 form-control-label">
                     Ngày tháng năm sinh:
                   </label>
-                  <div className="col-sm-9">
-                    <DatePicker
-                      placeholderText="Ngày tháng năm sinh"
-                      value="29-09-1992"
-                    ></DatePicker>
-                  </div>
+                  <Field
+                    name="dob"
+                    classNameDiv="col-sm-9"
+                    component={DateInput}
+                    placeholder="Vui lòng chọn ngày tháng năm sinh"
+                    className="form-control"
+                    showTimeSelect
+                  ></Field>
                   <div class="line" />
-                  {/* Chức vụ*/}
-                  {/* <label className="col-sm-3 form-control-label">Chức vụ</label>
-                  <div className="col-sm-9">
-                    <select className="form-control">
-                      <option value="0">Director</option>
-                      <option value="1">Manager</option>
-                      <option value="2">Team Leader</option>
-                      <option value="3">Field Operator</option>
-                    </select>
-                  </div>
-                  <div class="line" /> */}
-                  {/* SDT */}
-                  <label className="col-sm-3 form-control-label">
-                    Số điện thoại:
-                  </label>
-                  <div className="col-sm-9">
-                    <input
-                      onChange={this.handleChange}
-                      type="tel"
-                      id="phoneNumber"
-                      className="form-control"
-                      placeholder="Vui lòng nhập số điện thoại"
-                    />
-                  </div>
-                  <div class="line" />
-                  {/* Giới tính */}
+                </div>
+                {/* Giới tính */}
+                <div className="form-group row">
                   <label className="col-sm-3 form-control-label">
                     Giới tính:
                   </label>
-                  <div className="col-sm-9">
-                    <select className="form-control">
-                      <oprion value="0">Nam</oprion>
-                      <option value="1">Nữ</option>
-                    </select>
-                  </div>
+                  <Field
+                    name="gender"
+                    type="text"
+                    options={genderOption}
+                    // classNameDiv="col-sm-9"
+                    component={SelectInput}
+                    placeholder="Vui lòng chọn giới tính"
+                    // className="form-control"
+                  ></Field>
                   <div class="line" />
-                  {/* email */}
+                </div>
+
+                {/* Email*/}
+                <div className="form-group row">
                   <label className="col-sm-3 form-control-label">Email:</label>
-                  <div className="col-sm-9">
-                    <input
-                      onChange={this.handleChange}
-                      id="email"
-                      type="email"
-                      className="form-control"
-                      placeholder="Vui lòng nhập địa chỉ email"
-                    />
-                  </div>
+                  <Field
+                    name="email"
+                    type="email"
+                    classNameDiv="col-sm-9"
+                    component={TextInput}
+                    placeholder="Vui lòng nhập địa chỉ email"
+                    className="form-control"
+                  ></Field>
                   <div class="line" />
-                  {/* Dia chi */}
+                </div>
+                {/* Địa chỉ*/}
+                <div className="form-group row">
                   <label className="col-sm-3 form-control-label">
                     Địa chỉ:
                   </label>
-                  <div className="col-sm-9">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Vui lòng nhập địa chỉ"
-                    />
-                  </div>
+                  <Field
+                    name="address"
+                    type="text"
+                    classNameDiv="col-sm-9"
+                    component={TextInput}
+                    placeholder="Vui lòng nhập địa chỉ"
+                    className="form-control"
+                  ></Field>
                   <div class="line" />
-                  {/* CMND */}
+                </div>
+                {/* CMND*/}
+                <div className="form-group row">
+                  <label className="col-sm-3 form-control-label">CMND:</label>
+                  <Field
+                    name="identityNumber"
+                    type="number"
+                    classNameDiv="col-sm-9"
+                    component={TextInput}
+                    placeholder="Vui lòng nhập số chứng minh nhân dân"
+                    className="form-control"
+                  ></Field>
+                  <div class="line" />
+                </div>
+                {/* Hình mặt trước cmnd*/}
+                <div className="form-group row">
                   <label className="col-sm-3 form-control-label">
-                    Chứng minh nhân dân:
-                  </label>
-                  <div className="col-sm-9">
-                    <input
-                      type="number"
-                      className="form-control"
-                      placeholder="Vui lòng nhập số chứng minh nhân dân"
-                    />
-                  </div>
-                  <div class="line" />
-                  {/* Hình chụp mặt trước cmnd */}
-                  <label
-                    for="fileInput"
-                    className="col-sm-3 form-control-label"
-                  >
                     Hình mặt trước cmnd:
                   </label>
-                  <div className="col-sm-9">
-                    <input
-                      id="fileInput"
-                      type="file"
-                      className="form-control-file"
-                    />
+                  <Field
+                    name="frontIdentity"
+                    type="file"
+                    classNameDiv="col-sm-4"
+                    classNameP="col-sm-3"
+                    component={ImageUploadInput}
+                    className="form-control"
+                    fileInputRef={this.frontIdentityRef}
+                    onChange={this.fileChange}
+                  ></Field>
+                  <div className="col-sm-3">
+                    {renderImageName(frontIdentityName)}
                   </div>
                   <div className="col-sm-8 offset-sm-4">
-                    <img
-                      src="https://scontent.fsgn8-1.fna.fbcdn.net/v/t1.0-9/66202288_2413380262049068_281577970026414080_n.jpg?_nc_cat=102&_nc_oc=AQmT75QSKpCnsVXfzrP4f0GOyv0BVeBZIdLUpyjyhEIGsg0OxyfaKvThnIY9dy-0NZM&_nc_ht=scontent.fsgn8-1.fna&oh=7baf37a3748b14fba2e0084271a5e193&oe=5DEC2258"
-                      alt=""
-                      className="avatar_cmnd"
-                    />
+                    {renderImage(frontIdentity, frontIdentityUrl)}
                   </div>
+
                   <div class="line" />
-                  {/* Hình chụp mặt sau cmnd */}
-                  <label
-                    for="fileInput"
-                    className="col-sm-3 form-control-label"
-                  >
+                </div>
+                {/* Hình mặt sau cmnd*/}
+                <div className="form-group row">
+                  <label className="col-sm-3 form-control-label">
                     Hình mặt sau cmnd:
                   </label>
-                  <div className="col-sm-9">
-                    <input
-                      id="fileInput"
-                      type="file"
-                      className="form-control-file"
-                    />
+                  <Field
+                    type="file"
+                    classNameDiv="col-sm-4"
+                    classNameP="col-sm-3"
+                    component={ImageUploadInput}
+                    className="form-control"
+                    fileInputRef={this.backIdentityRef}
+                    onChange={this.fileChangeBackIdentity}
+                    name="backIdentity"
+                  ></Field>
+                  <div className="col-sm-3">
+                    {renderImageName(backIdentityName)}
                   </div>
                   <div className="col-sm-8 offset-sm-4">
-                    <img
-                      src="https://scontent.fsgn8-1.fna.fbcdn.net/v/t1.0-9/66202288_2413380262049068_281577970026414080_n.jpg?_nc_cat=102&_nc_oc=AQmT75QSKpCnsVXfzrP4f0GOyv0BVeBZIdLUpyjyhEIGsg0OxyfaKvThnIY9dy-0NZM&_nc_ht=scontent.fsgn8-1.fna&oh=7baf37a3748b14fba2e0084271a5e193&oe=5DEC2258"
-                      alt=""
-                      className="avatar_cmnd"
-                    />
+                    {renderImage(backIdentity, backIdentityUrl)}
                   </div>
                   <div class="line" />
-                  {/* Chiều cao*/}
+                </div>
+                {/*Chiều cao*/}
+                <div className="form-group row">
                   <label className="col-sm-3 form-control-label">
-                    Chiều cao (cm):
+                    Chiều cao(cm):
                   </label>
-                  <div className="col-sm-9">
-                    <input
-                      type="number"
-                      className="form-control"
-                      placeholder="Vui lòng nhập chiều cao"
-                    />
-                  </div>
+                  <Field
+                    name="heightParam"
+                    type="number"
+                    classNameDiv="col-sm-9"
+                    component={TextInput}
+                    placeholder="Vui lòng nhập chiều cao"
+                    className="form-control"
+                  ></Field>
                   <div class="line" />
-                  {/* cân nặng */}
+                </div>
+                {/*Cân nặng*/}
+                <div className="form-group row">
                   <label className="col-sm-3 form-control-label">
-                    Cân nặng (Kg):
+                    Cân nặng(Kg):
                   </label>
-                  <div className="col-sm-9">
-                    <input
-                      type="number"
-                      className="form-control"
-                      placeholder="Vui lòng nhập cân nặng"
-                    />
-                  </div>
+                  <Field
+                    name="weightParam"
+                    type="number"
+                    classNameDiv="col-sm-9"
+                    component={TextInput}
+                    placeholder="Vui lòng nhập cân nặng"
+                    className="form-control"
+                  ></Field>
                   <div class="line" />
-                  {/* Hình chân dung */}
-                  <label
-                    for="fileInput"
-                    className="col-sm-3 form-control-label"
-                  >
-                    Hình chân dung
+                </div>
+                {/* Hình chân dung*/}
+                <div className="form-group row">
+                  <label className="col-sm-3 form-control-label">
+                    Hình chân dung:
                   </label>
-                  <div className="col-sm-9">
-                    <input
-                      id="fileInput"
-                      type="file"
-                      className="form-control-file"
-                    />
+                  <Field
+                    name="avatarImage"
+                    type="file"
+                    classNameDiv="col-sm-4"
+                    classNameP="col-sm-3"
+                    component={ImageUploadInput}
+                    className="form-control"
+                    fileInputRef={this.avatarRef}
+                    onChange={this.avatarChange}
+                  ></Field>
+                  <div className="col-sm-3">
+                    {renderImageName(avatarImageName)}
                   </div>
                   <div className="col-sm-8 offset-sm-4">
-                    <img
-                      src="hhttps://scontent.fsgn8-1.fna.fbcdn.net/v/t1.0-9/66202288_2413380262049068_281577970026414080_n.jpg?_nc_cat=102&_nc_oc=AQmT75QSKpCnsVXfzrP4f0GOyv0BVeBZIdLUpyjyhEIGsg0OxyfaKvThnIY9dy-0NZM&_nc_ht=scontent.fsgn8-1.fna&oh=7baf37a3748b14fba2e0084271a5e193&oe=5DEC2258"
-                      alt=""
-                      className="avatar_cmnd"
-                    />
+                    {renderImage(avatarImage, avatarImageUrl)}
                   </div>
                   <div class="line" />
-                  {/* Hình toàn thân */}
-                  <label
-                    for="fileInput"
-                    className="col-sm-3 form-control-label"
-                  >
-                    Hình toàn thân
+                </div>
+                {/* Hình toàn thân*/}
+                <div className="form-group row">
+                  <label className="col-sm-3 form-control-label">
+                    Hình toàn thân:
                   </label>
-                  <div className="col-sm-9">
-                    <input
-                      id="fileInput"
-                      type="file"
-                      className="form-control-file"
-                    />
+                  <Field
+                    name="fullBodyImage"
+                    type="file"
+                    classNameDiv="col-sm-4"
+                    classNameP="col-sm-3"
+                    component={ImageUploadInput}
+                    className="form-control"
+                    fileInputRef={this.fullBodyRef}
+                    onChange={this.fullBodyChange}
+                  ></Field>
+                  <div className="col-sm-3">
+                    {renderImageName(fullBodyImageName)}
                   </div>
                   <div className="col-sm-8 offset-sm-4">
-                    <img
-                      src="https://scontent.fsgn8-1.fna.fbcdn.net/v/t1.0-9/66202288_2413380262049068_281577970026414080_n.jpg?_nc_cat=102&_nc_oc=AQmT75QSKpCnsVXfzrP4f0GOyv0BVeBZIdLUpyjyhEIGsg0OxyfaKvThnIY9dy-0NZM&_nc_ht=scontent.fsgn8-1.fna&oh=7baf37a3748b14fba2e0084271a5e193&oe=5DEC2258"
-                      alt=""
-                      className="avatar_cmnd"
-                    />
+                    {renderImage(fullBodyImage, fullBodyImageUrl)}
                   </div>
                   <div class="line" />
-                  {/* Mã số thuế */}
+                </div>
+                {/*Mã số thuế*/}
+                <div className="form-group row">
                   <label className="col-sm-3 form-control-label">
                     Mã số thuế:
                   </label>
-                  <div className="col-sm-9">
-                    <input
-                      type="number"
-                      className="form-control"
-                      placeholder="Vui lòng nhập mã số thuế"
-                    />
-                  </div>
+                  <Field
+                    name="taxNumber"
+                    type="number"
+                    classNameDiv="col-sm-9"
+                    component={TextInput}
+                    placeholder="Vui lòng nhập mã số thuế"
+                    className="form-control"
+                  ></Field>
                   <div class="line" />
-                  {/* Số tk ngân hàng */}
+                </div>
+                {/*Số tài khoản ngân hàng*/}
+                <div className="form-group row">
                   <label className="col-sm-3 form-control-label">
                     Số tài khoản ngân hàng:
                   </label>
-                  <div className="col-sm-9">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Vui lòng nhập số tài khoản ngân hàng"
-                    />
-                  </div>
+                  <Field
+                    name="bankNumber"
+                    type="number"
+                    classNameDiv="col-sm-9"
+                    component={TextInput}
+                    placeholder="Vui lòng nhập số tài khoản ngân hàng"
+                    className="form-control"
+                  ></Field>
                   <div class="line" />
-                  {/* Tên ngân hàng */}
+                </div>
+                {/*Tên ngân hàng*/}
+                <div className="form-group row">
                   <label className="col-sm-3 form-control-label">
                     Tên ngân hàng:
                   </label>
-                  <div className="col-sm-9">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Vui lòng nhập tên ngân hàng"
-                    />
-                  </div>
+                  <Field
+                    name="bankName"
+                    type="text"
+                    options={banks}
+                    // classNameDiv="col-sm-9"
+                    component={SelectInput}
+                    placeholder="Vui lòng chọn ngân hàng"
+                    // className="form-control"
+                  ></Field>
                   <div class="line" />
-                  {/* Tỉnh ngân hàng */}
+                </div>
+
+                {/*Tỉnh ngân hàng*/}
+                <div className="form-group row">
                   <label className="col-sm-3 form-control-label">
-                    Chi nhanh ngân hàng:
+                    Tỉnh ngân hàng:
                   </label>
-                  <div className="col-sm-9">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Vui lòng nhập tên chi nhánh ngân hàng"
-                    />
-                  </div>
+                  <Field
+                    name="provinceBank"
+                    type="text"
+                    options={provinces}
+                    // classNameDiv="col-sm-9"
+                    component={SelectInput}
+                    placeholder="Vui lòng chọn tỉnh ngân hàng"
+                    // className="form-control"
+                  ></Field>
                   <div class="line" />
-                  {/* Tỉnh ngân hàng */}
+                </div>
+                {/*Chi nhánh ngân hàng*/}
+                <div className="form-group row">
+                  <label className="col-sm-3 form-control-label">
+                    Chi nhánh ngân hàng:
+                  </label>
+                  <Field
+                    name="bankBranch"
+                    type="text"
+                    classNameDiv="col-sm-9"
+                    component={TextInput}
+                    placeholder="Vui lòng nhập chi nhánh ngân hàng"
+                    className="form-control"
+                  ></Field>
+                  <div class="line" />
+                </div>
+                {/*Nơi đăng kí làm việc*/}
+                <div className="form-group row">
                   <label className="col-sm-3 form-control-label">
                     Nơi đăng kí làm việc:
                   </label>
-                  <div className="col-sm-9">
-                    <select>
-                      <option>Thành phố Hồ Chí Minh</option>
-                      <option>Đà Nẵng</option>
-                      <option>Hà Nội</option>
-                      <option>Bình Dương</option>
-                    </select>
-                  </div>
-                  <div class="line" />
-
-                  <div className="col-sm-9 offset-3">
-                    <input
-                      type="text"
-                      placeholder="Vui lòng nhập quận/huyện đăng kí làm việc"
-                      className="form-control"
-                    ></input>
-                  </div>
+                  <Field
+                    name="registerWork"
+                    type="text"
+                    options={provinces}
+                    // classNameDiv="col-sm-9"
+                    component={SelectInput}
+                    placeholder="Vui lòng chọn nơi đăng kí làm việc"
+                    // className="form-control"
+                  ></Field>
                   <div class="line" />
                 </div>
-
-                <div className="col-sm-2 offset-sm-10">
-                  <button className="btn btn-success">Đăng kí</button>
-                </div>
+                <Button positive type="submit">
+                  Submit
+                </Button>
+                {/* <Button type="button" onClick={this.props.history.goBack}>
+                  Cancel
+                </Button> */}
               </form>
             </div>
           </div>
@@ -330,13 +549,22 @@ class CreateNewEmployee extends Component {
 
 const mapState = state => {
   return {
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    humanReducer: state.humanReducer
   };
 };
 const mapDispatch = dispatch => {
-  return {};
+  return {
+    createNewMember: (newMember, auth, Upload) => {
+      return dispatch(createNewMember(newMember, auth, Upload));
+    }
+  };
 };
 export default connect(
   mapState,
   mapDispatch
-)(CreateNewEmployee);
+)(
+  reduxForm({ form: "createNewEmployee", enableReinitialize: true, validate })(
+    CreateNewEmployee
+  )
+);
