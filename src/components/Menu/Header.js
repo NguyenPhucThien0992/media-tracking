@@ -16,7 +16,7 @@ class Header extends Component {
       return (
         <Redirect
           to={{
-            pathname: "/logout"
+            pathname: "/create-new-employee"
           }}
         ></Redirect>
       );
@@ -186,16 +186,13 @@ class Header extends Component {
                   </li>
 
                   <li className="nav-item">
-                    <button
-                      onClick={this.onSignout}
-                      className="nav-link logout"
-                    >
+                    {/* <a onClick={this.onSignout} className="nav-link logout">
                       Đăng xuất
-                    </button>
-                    {/* <NavLink to="/logout" className="nav-link logout">
+                    </a> */}
+                    <NavLink to="/logout" className="nav-link logout">
                       <span className="d-none d-sm-inline">Đăng xuất</span>
                       <i className="fa fa-sign-out" />
-                    </NavLink> */}
+                    </NavLink>
                   </li>
                 </ul>
               </div>

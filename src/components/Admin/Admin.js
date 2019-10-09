@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import Breadcum from "./../Breadcum/Breadcum";
+import Breadcum from "../Breadcum/Breadcum";
 import { NavLink } from "react-router-dom";
 class Admin extends Component {
   render() {

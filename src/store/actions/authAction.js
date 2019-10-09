@@ -7,22 +7,30 @@ import {
   SIGNUP_FAIL,
   SIGNOUT_FAIL
 } from "./../constant/const";
-import firebase from "firebase/app";
+import firebase from "firebase";
 import "firebase/auth";
 import "firebase/firestore";
+import { firebaseApp } from "./../../ultils/index";
 
-export const loginPhone = phoneNumber => {
-  firebase.auth().languageCode = "it";
-  // firebase.auth().useDeviceLanguage();
-  firebase.auth().settings.appVerificationDisabledForTesting = true;
-  var appVerifier = new firebase.auth.RecaptchaVerifier("recaptcha-container");
+export const loginPhone = (phoneNumber, captcha) => {
   return (dispatch, getState) => {
-    firebase
+    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier("captcha", {
+      size: "invisible",
+      callback: function(response) {
+        // reCAPTCHA solved, allow signInWithPhoneNumber.
+        // onRecaptchaVerifier();
+      }
+    });
+
+    var appVerifier = window.recaptchaVerifier;
+
+    firebaseApp
       .auth()
       .signInWithPhoneNumber(phoneNumber, appVerifier)
-      //  .then(ConfirmationResult => {
-      // firebase.auth().ConfirmationResult = ConfirmationResult;
-      // })
+      .then(confirmationResult => {
+        console.log("confirmation ok");
+        window.confirmationResult = confirmationResult;
+      })
       .then(res => {
         dispatch({ type: LOGIN_PHONE_SUCCESS, res });
       })
@@ -34,6 +42,7 @@ export const loginPhone = phoneNumber => {
 
 export const confirmOtp = (confirmationResult, otp) => {
   return (dispatch, getState) => {
+    var confirmationResult = window.confirmationResult;
     confirmationResult
       .confirm(otp)
       .then(res => {

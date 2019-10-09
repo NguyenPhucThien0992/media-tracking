@@ -15,11 +15,36 @@ import provinces from "./../../common/province/provinces";
 class ProfileEmployee extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      avatar:
+        "https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"
+    };
   }
-
+  getAvatar = uid => {
+    const storage = firebase.storage().ref();
+    storage
+      .child(`images/users/${uid}/avatar.png`)
+      .getDownloadURL()
+      .then(url => {
+        this.setState({
+          avatar: url
+        });
+      })
+      .catch(error => {});
+  };
   render() {
-    const { user, phoneNumber, bankName, province, registerWork } = this.props;
-
+    const {
+      user,
+      phoneNumber,
+      bankName,
+      province,
+      registerWork,
+      auth
+    } = this.props;
+    if (auth && auth.uid !== null) {
+      this.getAvatar(auth.uid);
+    }
+    console.log("user", user);
     return (
       <Fragment>
         <Breadcum Menu="Nhân sự" SubMenu="Nhân viên" />
@@ -31,7 +56,7 @@ class ProfileEmployee extends Component {
                   <div class="col-md-4">
                     <div class="profile-img">
                       <img
-                        src="https://scontent.fsgn8-1.fna.fbcdn.net/v/t1.0-9/66202288_2413380262049068_281577970026414080_n.jpg?_nc_cat=102&_nc_oc=AQmT75QSKpCnsVXfzrP4f0GOyv0BVeBZIdLUpyjyhEIGsg0OxyfaKvThnIY9dy-0NZM&_nc_ht=scontent.fsgn8-1.fna&oh=7baf37a3748b14fba2e0084271a5e193&oe=5DEC2258"
+                        src={this.state.avatar}
                         alt=""
                         style={{ width: "300px", height: "300px" }}
                       />
@@ -41,7 +66,7 @@ class ProfileEmployee extends Component {
                     <div class="profile-head">
                       <h5>
                         {user && user !== undefined
-                          ? user.firstName.concat(" ", user.lastName)
+                          ? user.first_name.concat(" ", user.last_name)
                           : null}
                       </h5>
                       <h6>Director</h6>
@@ -148,7 +173,7 @@ class ProfileEmployee extends Component {
                           <div class="col-md-3">
                             <p>
                               {user && user !== undefined
-                                ? user.firstName
+                                ? user.first_name
                                 : null}
                             </p>
                           </div>
@@ -158,7 +183,7 @@ class ProfileEmployee extends Component {
                           <div class="col-md-3">
                             <p>
                               {user && user !== undefined
-                                ? user.lastName
+                                ? user.last_name
                                 : null}
                             </p>
                           </div>
@@ -216,11 +241,7 @@ class ProfileEmployee extends Component {
                             <label>Chứng minh nhân dân:</label>
                           </div>
                           <div class="col-md-6">
-                            <p>
-                              {user && user !== undefined
-                                ? user.identityNumber
-                                : null}
-                            </p>
+                            <p>{user && user !== undefined ? user.id : null}</p>
                           </div>
                         </div>
 
@@ -230,9 +251,7 @@ class ProfileEmployee extends Component {
                           </div>
                           <div class="col-md-6">
                             <p>
-                              {user && user !== undefined
-                                ? user.heightParam
-                                : null}
+                              {user && user !== undefined ? user.height : null}
                             </p>
                           </div>
                         </div>
@@ -243,9 +262,7 @@ class ProfileEmployee extends Component {
                           </div>
                           <div class="col-md-6">
                             <p>
-                              {user && user !== undefined
-                                ? user.weightParam
-                                : null}
+                              {user && user !== undefined ? user.weight : null}
                             </p>
                           </div>
                         </div>
@@ -256,9 +273,7 @@ class ProfileEmployee extends Component {
                           </div>
                           <div class="col-md-6">
                             <p>
-                              {user && user !== undefined
-                                ? user.taxNumber
-                                : null}
+                              {user && user !== undefined ? user.tax : null}
                             </p>
                           </div>
                         </div>
@@ -270,7 +285,7 @@ class ProfileEmployee extends Component {
                           <div class="col-md-6">
                             <p>
                               {user && user !== undefined
-                                ? user.bankNumber
+                                ? user.bank_number
                                 : null}
                             </p>
                           </div>
@@ -295,7 +310,7 @@ class ProfileEmployee extends Component {
                           <div class="col-md-6">
                             <p>
                               {user && user !== undefined
-                                ? user.bankBranch
+                                ? user.bank_brand
                                 : null}
                             </p>
                           </div>
@@ -313,7 +328,7 @@ class ProfileEmployee extends Component {
                             </span>
                           </div>
                         </div>
-                        <div class="row">
+                        {/* <div class="row">
                           <div class="col-md-3"></div>
                           <div class="col-md-6">
                             <span
@@ -335,7 +350,7 @@ class ProfileEmployee extends Component {
                               Quận 7
                             </span>
                           </div>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
@@ -350,26 +365,23 @@ class ProfileEmployee extends Component {
 }
 const mapState = state => {
   var allUsers, userUid, user, phoneNumber, bankName, province, registerWork;
-  if (
-    state.firestore.ordered.testConnectDb &&
-    state.firestore.ordered.testConnectDb !== null
-  ) {
-    allUsers = state.firestore.ordered.testConnectDb;
+  if (state.firestore.ordered.users && state.firestore.ordered.users !== null) {
+    allUsers = state.firestore.ordered.users;
   }
+
   if (state.firebase.auth && state.firebase.auth.uid !== null) {
     userUid = state.firebase.auth.uid;
   }
 
-  if (allUsers && allUsers != null) {
+  if (allUsers && allUsers !== null) {
     if (userUid && userUid !== null) {
       allUsers.forEach(item => {
-        if (item.uid === userUid) {
+        if (item.userId === userUid) {
           user = item;
         }
       });
     }
   }
-
   if (
     state.firebase.auth.phoneNumber &&
     state.firebase.auth.phoneNumber !== null
@@ -383,7 +395,7 @@ const mapState = state => {
 
   if (user && user !== null) {
     banks.forEach(item => {
-      if (item.key === user.bankName) {
+      if (item.key === user.bank_name) {
         return (bankName = item.text);
       }
     });
@@ -392,7 +404,7 @@ const mapState = state => {
   }
   if (user && user !== null) {
     provinces.forEach(item => {
-      if (item.key === user.provinceBank) {
+      if (item.key === user.city) {
         return (province = item.text);
       }
     });
@@ -401,7 +413,7 @@ const mapState = state => {
   }
   if (user && user !== null) {
     provinces.forEach(item => {
-      if (item.key === user.registerWork) {
+      if (item.key === user.district) {
         return (registerWork = item.text);
       }
     });
@@ -411,7 +423,7 @@ const mapState = state => {
   return {
     auth: state.firebase.auth,
     authReducer: state.authReducer,
-    users: state.firestore.ordered.testConnectDb,
+    users: state.firestore.ordered.users,
     user: user,
     phoneNumber: phoneNumber,
     bankName: bankName,
@@ -422,7 +434,7 @@ const mapState = state => {
 export default compose(
   firestoreConnect([
     {
-      collection: "testConnectDb"
+      collection: "users"
     }
   ]),
   connect(

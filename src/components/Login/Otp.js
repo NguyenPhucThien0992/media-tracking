@@ -14,7 +14,8 @@ class Otp extends Component {
       [e.target.id]: e.target.value
     });
   };
-  onConfirmOtp = () => {
+  onConfirmOtp = e => {
+    e.preventDefault();
     const { confirmOtp } = this.props;
     let otpCode = this.state.otpCode;
     let confirmationResult = this.props.authReducer.confirmationResult;
@@ -23,7 +24,7 @@ class Otp extends Component {
   };
 
   render() {
-    const { authReducer } = this.props;
+    const { authReducer, auth } = this.props;
     const confirmOtp = authReducer.confirmOtp;
     let isNewUser = null;
 
@@ -48,9 +49,10 @@ class Otp extends Component {
     }
 
     if (confirmOtp && confirmOtp === CONFIRM_OTP_SUCCESS_MESSAGE) {
-      if (isNewUser === false) {
+      let displayName = auth.displayName;
+      if (isNewUser === true || displayName === "" || displayName === null) {
         this.props.history.push("/create-new-member");
-      } else if (isNewUser === true) {
+      } else if (isNewUser === false) {
         this.props.history.push("/");
       }
     }
@@ -96,12 +98,14 @@ class Otp extends Component {
                           </label>
                         </div>
                         <div className="form-group"></div>
-                        <NavLink id="login" to="/" className="btn btn-primary">
-                          Gửi
-                        </NavLink>
                       </form>
 
-                      <button onClick={this.onConfirmOtp}>Gui</button>
+                      <button
+                        className="btn btn-primary"
+                        onClick={this.onConfirmOtp}
+                      >
+                        Gửi
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -114,8 +118,10 @@ class Otp extends Component {
   }
 }
 const mapState = state => {
+  console.log("OPT state", state);
   return {
-    authReducer: state.authReducer
+    authReducer: state.authReducer,
+    auth: state.firebase.auth
   };
 };
 const mapDispatch = (dispatch, props) => {

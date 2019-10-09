@@ -11,14 +11,11 @@ import "firebase/auth";
 class DashBoard extends Component {
   render() {
     const { projects } = this.props;
-    console.log("projects", projects);
     return <HeaderStatistic />;
   }
 }
 
 const mapState = (state, props) => {
-  console.log("all state dashboard", state);
-  console.log("all props dashboard", props);
   return {
     projects: state.firestore.ordered.projects
   };

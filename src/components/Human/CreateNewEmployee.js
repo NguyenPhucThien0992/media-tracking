@@ -18,11 +18,14 @@ import {
   hasLengthBetween
 } from "revalidate";
 import moment from "moment";
-import { Button } from "semantic-ui-react";
+import { Button, Form, Label } from "semantic-ui-react";
 import { createNewMember } from "./../../store/actions/humanAction";
 import banks from "./../../common/banks/banks";
 import provinces from "./../../common/province/provinces";
 import { CREATE_NEW_MEMBER_SUCCESS_MESSAGE } from "./../../store/constant/const";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 const isValidEmail = createValidator(
   message => value => {
     if (value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
@@ -34,13 +37,13 @@ const isValidEmail = createValidator(
 const validate = combineValidators({
   firstName: isRequired({ message: "Vui lòng nhập tên" }),
   lastName: isRequired({ message: "Vui lòng nhập họ và tên lót" }),
-  // dob: isRequired({ message: "Vui lòng nhập họ và tên" })
+  dob: isRequired({ message: "Vui lòng nhập họ và tên" }),
   gender: isRequired({ message: "Vui lòng chọn giới tính" }),
   email: composeValidators(
     isRequired({ message: "Vui lòng nhập địa chỉ email" }),
     isValidEmail
   )(),
-  address: isRequired({ message: "Vui lòng nhập địa chỉ" }),
+  address_home: isRequired({ message: "Vui lòng nhập địa chỉ" }),
   identityNumber: composeValidators(
     isNumeric({ message: "Vui lòng chỉ nhập số" }),
     isRequired({ message: "Vui lòng nhập số chứng minh nhân dân" }),
@@ -54,18 +57,43 @@ const validate = combineValidators({
   heightParam: isRequired({ message: "Vui lòng nhập chiều cao" }),
   weightParam: isRequired({ message: "Vui lòng nhập cân nặng" }),
   // avatarImage: isRequired({ message: "Vui lòng nhập họ và tên" }),
-  // fullBodyImage: isRequired({ message: "Vui lòng nhập họ và tên" }),
+  fullBodyImage: isRequired({ message: "Vui lòng nhập họ và tên" }),
   taxNumber: isRequired({ message: "Vui lòng nhập mã số thuế" }),
-  bankNumber: isRequired({ message: "Vui lòng nhập số tài khoản ngân hàng" })
-  // bankName: isRequired({ message: "Vui lòng nhập họ và tên" }),
-  // provineBank: isRequired({ message: "Vui lòng nhập họ và tên" }),
-  // bankBranch: isRequired({ message: "Vui lòng nhập họ và tên" }),
-  // registerWork: isRequired({ message: "Vui lòng nhập họ và tên" })
+  bankNumber: isRequired({ message: "Vui lòng nhập số tài khoản ngân hàng" }),
+  bankName: isRequired({ message: "Vui lòng nhập họ và tên" }),
+  provineBank: isRequired({ message: "Vui lòng nhập họ và tên" }),
+  bankBranch: isRequired({ message: "Vui lòng nhập họ và tên" }),
+  registerWork: isRequired({ message: "Vui lòng nhập họ và tên" })
 });
 const genderOption = [
   { key: "nam", text: "Nam", value: "Nam" },
   { key: "nu", text: "Nữ", value: "Nữ" }
 ];
+
+// DateInput = ({
+//   input: { value, onChange, ...restInput },
+//   width,
+//   placeholder,
+//   meta: { touched, error },
+//   ...rest
+// }) => {
+//   return (
+//     <Form.Field error={touched && !!error} width={width}>
+//       <DatePicker
+//         {...rest}
+//         placeholderText={placeholder}
+//         selected={value ? moment(value) : null}
+//         onChange={onChange}
+//         {...restInput}
+//       />
+//       {touched && error && (
+//         <Label basic color="red">
+//           {error}
+//         </Label>
+//       )}
+//     </Form.Field>
+//   );
+// };
 
 const renderImage = (imageState, imagePreviewUrl) => {
   if (imageState !== null) {
@@ -79,7 +107,7 @@ const renderImageName = imageName => {
 };
 
 class CreateNewEmployee extends Component {
-  onFormSubmit = (newMember, e) => {
+  onFormSubmit = newMember => {
     const auth = this.props.auth;
     const {
       frontIdentity,
@@ -108,9 +136,15 @@ class CreateNewEmployee extends Component {
     avatarImageName: null,
     fullBodyImage: null,
     fullBodyImageUrl: null,
-    fullBodyImageName: null
+    fullBodyImageName: null,
+    // Date input
+    startDate: new Date()
   };
-
+  handleChange = date => {
+    this.setState({
+      startDate: date
+    });
+  };
   fileChange = e => {
     let reader = new FileReader();
     let file = e.target.files[0];
@@ -247,14 +281,22 @@ class CreateNewEmployee extends Component {
                   <label className="col-sm-3 form-control-label">
                     Ngày tháng năm sinh:
                   </label>
-                  <Field
+                  {/* <Field
                     name="dob"
                     classNameDiv="col-sm-9"
                     component={DateInput}
                     placeholder="Vui lòng chọn ngày tháng năm sinh"
                     className="form-control"
-                    showTimeSelect
-                  ></Field>
+                    // showTimeSelect
+                  ></Field> */}
+                  {/* <Field name="dob">
+                    <DatePicker
+                      selected={this.state.startDate}
+                      onChange={this.handleChange}
+                      dateFormat="dd/mm/yyyy"
+                    ></DatePicker>
+                  </Field> */}
+
                   <div class="line" />
                 </div>
                 {/* Giới tính */}
@@ -293,13 +335,14 @@ class CreateNewEmployee extends Component {
                     Địa chỉ:
                   </label>
                   <Field
-                    name="address"
+                    name="address_home"
                     type="text"
                     classNameDiv="col-sm-9"
                     component={TextInput}
                     placeholder="Vui lòng nhập địa chỉ"
                     className="form-control"
                   ></Field>
+
                   <div class="line" />
                 </div>
                 {/* CMND*/}

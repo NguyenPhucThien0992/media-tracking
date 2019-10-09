@@ -27,6 +27,19 @@ import AddNewAgency from "./components/Admin/AddNewAgency";
 import AgencyDetailed from "./components/Admin/AgencyDetailed";
 import SearchEmployeeDetails from "./components/Human/SearchEmployeeDetails";
 import ModifyImportedStore from "./components/Project/AllProjects/ModifyImportedStore";
+import Jobs from "./components/Jobs/Jobs";
+import ReportTimekeeping from "./components/ReportTimeKeeping/ReportTimeKeeping";
+import Forms from "./components/Forms/Forms";
+import Checker from "./components/Observe/Checker/Checker";
+import Employee from "./components/Observe/Employee/Employee";
+import Report from "./components/Observe/Report/Report";
+import Projects from "./components/Observe/Projects/Projects";
+import Stores from "./components/Observe/Stores/Stores";
+import SubForms from "./components/Observe/SubForms/SubForms";
+import ManageEmployee from "./components/Admin/ManageEmployee";
+import ManageAccount from "./components/Admin/ManageAccount";
+import ManageUsers from "./components/GeneralAdmin/ManagaUsers";
+import ManageAgency from "./components/GeneralAdmin/ManageAgency";
 
 class App extends Component {
   showContentMenus = routes => {
@@ -63,7 +76,7 @@ class App extends Component {
                   component={CreateNewEmployee}
                   exact
                 />
-                <Route path="/" component={DashBoard} exact />
+                <Route path="/" component={Jobs} exact />
                 <Route
                   path="/overview-employee"
                   component={AccountGeneral}
@@ -115,6 +128,35 @@ class App extends Component {
                   path="/admin/agency/details"
                   component={AgencyDetailed}
                 ></Route>
+                {/* Menu mới */}
+                <Route
+                  path="/report-timekeeping"
+                  component={ReportTimekeeping}
+                ></Route>
+                <Route path="/forms" component={Forms}></Route>
+                <Route path="/Observe/Checker" component={Checker}></Route>
+                <Route path="/Observe/Employee" component={Employee}></Route>
+                <Route path="/Observe/Report" component={Report}></Route>
+                <Route path="/Observe/Projects" component={Projects}></Route>
+                <Route path="/Observe/Stores" component={Stores}></Route>
+                <Route path="/Observe/SubForms" component={SubForms}></Route>
+                <Route
+                  path="/admin/manage-employee"
+                  component={ManageEmployee}
+                ></Route>
+                <Route
+                  path="/admin/manage-account"
+                  component={ManageAccount}
+                ></Route>
+                <Route
+                  path="/generaladmin/manage-agency"
+                  component={ManageAgency}
+                ></Route>
+                <Route
+                  path="/generaladmin/manage-user"
+                  component={ManageUsers}
+                ></Route>
+
                 {/* <Route component={NotFound} /> */}
               </div>
             </div>

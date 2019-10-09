@@ -4,15 +4,45 @@ import Breadcum from "./../../Breadcum/Breadcum";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
+import "firebase/auth";
+import "firebase/firestore";
+import "firebase/storage";
+import firebase from "firebase/app";
 class AllProjects extends Component {
+  componentDidMount() {
+    console.log("component did mount");
+  }
+
   render() {
-    const { projects } = this.props;
-    console.log(projects);
-    let allProject =
-      projects &&
-      projects.map(project => {
-        return <div>{project.status === "1"}</div>;
+    const {
+      projects_prepare,
+      projects_onProgress,
+      projects_complete
+    } = this.props;
+    let prepareProject_render = null;
+    if (projects_prepare && projects_prepare.length >= 1) {
+      prepareProject_render = projects_prepare.map(project => {
+        return <div>dasdas</div>;
       });
+    } else {
+      return prepareProject_render;
+    }
+
+    const onProgressProject_render = () => {
+      if (projects_onProgress && projects_onProgress !== null) {
+        return <div>{projects_onProgress.id}</div>;
+      } else {
+        return null;
+      }
+    };
+    const completeProject_render = () => {
+      if (projects_complete && projects_complete !== null) {
+        return <div>{projects_complete.id}</div>;
+      } else {
+        return null;
+      }
+    };
+
     return (
       <Fragment>
         <Breadcum Menu="Dự án" SubMenu="Tổng dự án" />
@@ -144,7 +174,7 @@ class AllProjects extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {allProject}
+                    {prepareProject_render}
                     {/* <tr>
                       <th scope="row">1</th>
                       <td>PJ001</td>
@@ -609,8 +639,41 @@ class AllProjects extends Component {
   }
 }
 const mapState = state => {
+  var all_projects;
+  var projects_prepare = [];
+  var projects_onProgress = [];
+  var projects_complete = [];
+
+  all_projects = state.firestore.ordered.projects;
+  if (all_projects && all_projects !== null) {
+    all_projects.forEach(item => {
+      if (item.status === 1) {
+        projects_prepare.push(item);
+      }
+    });
+  }
+
+  if (all_projects && all_projects !== null) {
+    all_projects.forEach(item => {
+      if (item.status === 2) {
+        projects_onProgress.push(item);
+      }
+    });
+  }
+
+  if (all_projects && all_projects !== null) {
+    all_projects.forEach(item => {
+      if (item.status === 3) {
+        projects_complete.push(item);
+      }
+    });
+  }
+  console.log("prepare", projects_prepare);
   return {
-    projects: state.firestore.ordered.projects
+    projects: state.firestore.ordered.projects,
+    projects_prepare: projects_prepare,
+    projects_onProgress: projects_onProgress,
+    projects_complete: projects_complete
   };
 };
 

@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { loginPhone } from "./../../store/actions/authAction";
 import { Redirect } from "react-router-dom";
@@ -14,7 +13,7 @@ class Login extends Component {
     });
   };
 
-  onLoginPhone = () => {
+  onLoginPhone = e => {
     const { loginPhone } = this.props;
     let rawPhoneNumber = this.state.phoneNumber;
     let tmpPhoneNumber = rawPhoneNumber.substring(1, 10);
@@ -67,7 +66,6 @@ class Login extends Component {
                             name="phoneNumber"
                             required
                             className="input-material"
-                            placeholder="Vui lòng nhập số điện thoại"
                             onChange={this.handleChange}
                           />
                           <label
@@ -78,29 +76,20 @@ class Login extends Component {
                           </label>
                         </div>
                         <div className="form-group"></div>
-                        <button
-                          id="login"
-                          className="btn btn-primary"
-                          onClick={this.onLoginPhone}
-                        >
-                          Đăng nhập
-                        </button>
                       </form>
-                      <button onClick={this.onLoginPhone}>Dang nhap</button>
-                      <a href="adaasd" className="forgot-pass">
-                        Quên mật khẩu?
-                      </a>
-                      <br />
-                      <small>Bạn chưa có tài khoản? </small>
-                      <NavLink to="/human/details" className="signup">
-                        Đăng ký
-                      </NavLink>
+                      <button
+                        className="btn btn-primary"
+                        onClick={this.onLoginPhone}
+                      >
+                        Đăng nhập
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <div id="captcha"></div>
         </div>
       </Fragment>
     );
@@ -108,6 +97,7 @@ class Login extends Component {
 }
 
 const mapState = state => {
+  console.log("all login state", state);
   return {
     authReducer: state.authReducer,
     firebaseAuth: state.firebase.auth
@@ -115,8 +105,8 @@ const mapState = state => {
 };
 const mapDispatch = (dispatch, props) => {
   return {
-    loginPhone: message => {
-      dispatch(loginPhone(message));
+    loginPhone: phoneNumber => {
+      dispatch(loginPhone(phoneNumber));
     }
   };
 };

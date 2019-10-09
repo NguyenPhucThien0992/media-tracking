@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import "./../../styles/Human/Human.css";
 import { NavLink } from "react-router-dom";
-import Breadcum from "./../Breadcum/Breadcum";
+import Breadcum from "../Breadcum/Breadcum";
 import "./../../styles/Admin/AgencyDetails.css";
 class AgencyDetailed extends Component {
   render() {

@@ -20,9 +20,9 @@ const DateInput = ({
         {...rest}
         dateFormat="yyyy/MM/dd"
         placeholderText={placeholder}
-        selected={new Date()}
+        selected={console.log("current value", value)}
         onChange={(e, data) => {
-          onChange(data.moment().format("yyyy/MM/dd"));
+          onChange(console.log("data datepicker", data));
         }}
         {...restInput}
       />
