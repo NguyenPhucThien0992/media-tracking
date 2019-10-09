@@ -51,7 +51,7 @@ class Task extends Component {
         );
       });
     } else {
-      return (on_jobs_render = <div>Không có công việc nào</div>);
+      on_jobs_render = <div>Không có công việc nào</div>;
     }
 
     if (up_jobs && up_jobs.length >= 1) {
