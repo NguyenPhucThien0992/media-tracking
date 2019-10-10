@@ -6,20 +6,23 @@ import { firestoreConnect } from "react-redux-firebase";
 import { Redirect } from "react-router-dom";
 import { compose } from "redux";
 import { connect } from "react-redux";
-
+const off_type = {
+  1: "Đơn xin nghỉ phép",
+  2: "Đơn xin rút khỏi dự án",
+  3: "Đơn xin đổi ca"
+};
 class Forms extends Component {
   render() {
     const { day_off } = this.props;
     let form_approved = null;
     let form_waiting = null;
-    console.log("day off", day_off);
 
     if (day_off && day_off.length >= 1) {
       var index = 0;
       form_approved = day_off.map((day, key) => {
         var time_off = new Date(day.time.seconds * 1000);
 
-        if (day.status === 1) {
+        if (day.status === 2 || day.status === 3) {
           index = index + 1;
           return (
             <tr>
@@ -28,9 +31,13 @@ class Forms extends Component {
               <th>{day.project_name}</th>
               <th>{day.reason}</th>
               <th>{`${time_off.getDate()}/${time_off.getMonth()}/${time_off.getFullYear()}`}</th>
-              <th>{day.type}</th>
+              <th>{off_type[day.type]}</th>
               <th>
-                <span class="badge badge-pill badge-success">Chấp nhận</span>
+                {day.status === 2 ? (
+                  <span class="badge badge-pill badge-success">APPROVED</span>
+                ) : (
+                  <span class="badge badge-pill badge-danger">REJECTED</span>
+                )}
               </th>
             </tr>
           );
@@ -42,7 +49,7 @@ class Forms extends Component {
       form_waiting = day_off.map((day, key) => {
         var time_off = new Date(day.time.seconds * 1000);
 
-        if (day.status === 2) {
+        if (day.status === 1) {
           index = index + 1;
           return (
             <tr>
@@ -51,9 +58,9 @@ class Forms extends Component {
               <th>{day.project_name}</th>
               <th>{day.reason}</th>
               <th>{`${time_off.getDate()}/${time_off.getMonth()}/${time_off.getFullYear()}`}</th>
-              <th>{day.type}</th>
+              <th>{off_type[day.type]}</th>
               <th>
-                <span class="badge badge-primary">Chờ duyệt</span>
+                <span class="badge badge-primary">WAITING</span>
               </th>
             </tr>
           );
