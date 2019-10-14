@@ -4,6 +4,7 @@ import { firestoreReducer } from "redux-firestore";
 import { firebaseReducer } from "react-redux-firebase";
 import humanReducer from "./humanReducer";
 import projectReducer from "./projectReducer";
+import employeeReducer from "./employeeReducer";
 import { reducer as FormReducer } from "redux-form";
 
 const rootReducer = combineReducers({
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   authReducer: authReducer,
   projects: projectReducer,
   firebase: firebaseReducer,
-  firestore: firestoreReducer
+  firestore: firestoreReducer,
+  employeeReducer: employeeReducer
 });
 
 export default rootReducer;

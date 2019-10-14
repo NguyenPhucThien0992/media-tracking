@@ -20,6 +20,7 @@ import { ReactReduxFirebaseProvider, getFirebase } from "react-redux-firebase";
 //   messagingSenderId: "1007534700532",
 //   appId: "1:1007534700532:web:e000682613503e64452ba1"
 // };
+
 const rrfConfig = {
   userProfile: "users",
   useFirestoreForProfile: true

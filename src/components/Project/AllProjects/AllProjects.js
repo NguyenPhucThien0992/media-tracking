@@ -669,6 +669,7 @@ const mapState = state => {
     });
   }
   console.log("prepare", projects_prepare);
+  console.log("prepare", projects_prepare.length);
   return {
     projects: state.firestore.ordered.projects,
     projects_prepare: projects_prepare,

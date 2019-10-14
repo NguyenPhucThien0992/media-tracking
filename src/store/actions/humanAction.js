@@ -75,15 +75,15 @@ export const createNewMember = (newMember, auth, Upload) => {
       .then(storageRef.child(path + avatarName).put(avatar, metadata))
       .then(storageRef.child(path + fullBodyName).delete())
       .then(storageRef.child(path + fullBodyName).put(fullBody, metadata))
-      // .then(
-      //   storageRef
-      //     .child(path + avatarName)
-      //     .getDownloadURL()
-      //     .then(url => {
-      //       tmpAvatar = url;
-      //       console.log("tmpAvatar", url);
-      //     })
-      // )
+      .then(
+        storageRef
+          .child(path + avatarName)
+          .getDownloadURL()
+          .then(url => {
+            tmpAvatar = url;
+            console.log("tmpAvatar", url);
+          })
+      )
       // .then(
       //   storageRef
       //     .child(path + frontIdentityName)

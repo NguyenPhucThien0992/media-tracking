@@ -281,7 +281,6 @@ class ReportTimeKeeping extends Component {
       data_shift_render = <div>Không có ca làm</div>;
       data_content_render = null;
     }
-    console.log("data_content_render", data_content_render);
 
     ///start calendar
     let weekdays = this.weekdaysShort.map(day => {
@@ -335,39 +334,43 @@ class ReportTimeKeeping extends Component {
     let trElems = rows.map((d, i) => {
       return <tr key={i * 100}>{d}</tr>;
     });
+    console.log("trelems", trElems);
     return (
       <Fragment>
-        <div className="calendar-container" style={this.style}>
-          <table className="calendar">
-            <thead>
-              <tr className="calendar-header">
-                <td colSpan="5">
-                  <this.MonthNav /> <this.YearNav />
-                </td>
-                <td colSpan="2" className="nav-month">
-                  <i
-                    className="prev fa fa-fw fa-chevron-left"
-                    onClick={e => {
-                      this.prevMonth();
-                    }}
-                  ></i>
-                  <i
-                    className="prev fa fa-fw fa-chevron-right"
-                    onClick={e => {
-                      this.nextMonth();
-                    }}
-                  ></i>
-                </td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>{weekdays}</tr>
-              {trElems}
-            </tbody>
-          </table>
-        </div>
+        <div className="col-lg-12">
+          <div className="card">
+            <div className="card-body">
+              <div className="calendar-container" style={this.style}>
+                <table className="calendar">
+                  <thead>
+                    <tr className="calendar-header">
+                      <td colSpan="5">
+                        <this.MonthNav /> <this.YearNav />
+                      </td>
+                      <td colSpan="2" className="nav-month">
+                        <i
+                          className="prev fa fa-fw fa-chevron-left"
+                          onClick={e => {
+                            this.prevMonth();
+                          }}
+                        ></i>
+                        <i
+                          className="prev fa fa-fw fa-chevron-right"
+                          onClick={e => {
+                            this.nextMonth();
+                          }}
+                        ></i>
+                      </td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>{weekdays}</tr>
+                    {trElems}
+                  </tbody>
+                </table>
+              </div>
 
-        {/* <div className="col-lg-12">
+              {/* <div className="col-lg-12">
           <div className="card">
             <div className="card-body">
               <div className="row table-checker">
@@ -400,9 +403,12 @@ class ReportTimeKeeping extends Component {
             </div>
           </div>
         </div> */}
-        <div>
-          {data_shift_render}
-          {data_content_render}
+              <div>
+                {data_shift_render}
+                {data_content_render}
+              </div>
+            </div>
+          </div>
         </div>
       </Fragment>
     );

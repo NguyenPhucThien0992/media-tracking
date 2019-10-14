@@ -15,6 +15,10 @@ export const TEST_PHONE = "TEST_PHONE";
 export const CREATE_NEW_MEMBER_SUCCESS = "CREATE_NEW_MEMBER_SUCCESS";
 export const CREATE_NEW_MEMBER_FAIL = "CREATE_NEW_MEMBER_FAIL";
 
+// Employee management
+export const GET_SUB_COLLABORATE_SUCCESS = "GET_SUB_COLLABORATE_SUCCESS";
+export const GET_SUB_COLLABORATE_FAIL = "GET_SUB_COLLABORATE_FAIL";
+
 // <!--- Message area --->
 
 //  default message for login, confirm Otp
